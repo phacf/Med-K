@@ -16,8 +16,8 @@ const usersReducer = (state = users, action) => {
       return state.patient;
 
     case patient.GET_VACCINES:
-      const { vacines } = action;
-      state.patient = [...state.patient.vacines, vacines];
+      const { vaccines } = action;
+      state.patient = [...state.patient.vaccines, vaccines];
       return state.patient;
 
     default:
