@@ -1,12 +1,9 @@
-import GlobalStyle from "./styles/global";
-
+import { Display, GlobalStyle } from "./styles/global";
 function App() {
-const 
-
   return (
-    <>
+    <Display>
       <GlobalStyle />
-    </>
+    </Display>
   );
 }
 
