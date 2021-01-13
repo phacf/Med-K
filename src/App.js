@@ -1,14 +1,12 @@
 import MenuDoctor from "./menu/doctor-menu";
 import MenuPatient from "./menu/patient-menu";
-import GlobalStyle from "./styles/global";
+import { GlobalStyle, Display } from "./styles/global";
 
 function App() {
-
-
-  return(
+  return (
     <>
-     <MenuDoctor />
-     <MenuPatient />
+      <MenuDoctor />
+      <MenuPatient />
       <GlobalStyle />
     </>
   );
