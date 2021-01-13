@@ -3,7 +3,7 @@ import { Container, Section, DescriptionDate, Date } from "./styles";
 const PatientConsult = () => {
   return (
     <Container>
-      <h1>Suas Consultas</h1>
+      <h1 className="container_title">Suas Consultas</h1>
       <Section>
         <Date>
           <button className="date_button">03/02</button>

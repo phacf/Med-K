@@ -3,19 +3,15 @@ import { Container, Section, DescriptionDate, Date } from "./styles";
 const PatientExam = () => {
   return (
     <Container>
-      <h1>Seus Exames</h1>
+      <h1 className="container_title">Suas Consultas</h1>
       <Section>
         <Date>
-          <button>03/02</button>
-          <button>03/02</button>
-          <button>03/02</button>
-          <button>03/02</button>
-          <button>03/02</button>
+          <button className="date_button">03/02</button>
         </Date>
         <DescriptionDate>
-          <p>03/02</p>
-          <p>Prostata</p>
-          <p>
+          <p className="descriptiondate_date">03/02</p>
+          <p className="descriptiondate_type">Prostata</p>
+          <p className="descriptiondate_description">
             lspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpa
           </p>
         </DescriptionDate>
