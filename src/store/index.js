@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import usersReducer from "./modules/user/reducer";
+import userReducer from "./modules/user/reducer";
 
 const reducers = combineReducers({
-  patient: usersReducer,
+  patient: userReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));
