@@ -17,11 +17,17 @@ export const Content = styled.div`
 
   img {
     width: 140px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    color: ${colors.gray2};
   }
 
   @media screen and (min-width: 768px) {
     width: fit-content;
-    min-height: 420px;
+    min-height: 490px;
     margin: 0;
     margin-right: 15%;
   }
@@ -31,21 +37,37 @@ export const StyledForm = styled.form`
   min-width: 250px;
   display: flex;
   flex-direction: column;
-  margin: 10% 0;
 
   div {
     width: 100%;
     position: relative;
     overflow: hidden;
-    margin: 2% 0;
+    margin: 4px 0;
+  }
+
+  div.radioContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  div.radioInfo {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   input {
     width: 100%;
     margin: 2% 0;
-    padding-top: 20px;
+    padding-top: 15px;
     border: none;
     outline: none;
+    color: ${colors.gray2};
+  }
+
+  input.inputRadio {
     color: ${colors.gray2};
   }
 
@@ -59,6 +81,12 @@ export const StyledForm = styled.form`
     border-bottom: 1px solid ${colors.gray1};
   }
 
+  label.labelRadio {
+    color: ${colors.gray2};
+    position: relative;
+    border-bottom: none;
+  }
+
   label::after {
     width: 100%;
     height: 100%;
@@ -70,14 +98,29 @@ export const StyledForm = styled.form`
     transition: transform 0.3s ease;
   }
 
+  label.name::after {
+    border-bottom: 2px solid
+      ${(props) => (props.nameError ? colors.blue4 : "red")};
+  }
+
   label.email::after {
     border-bottom: 2px solid
       ${(props) => (props.emailError ? colors.blue4 : "red")};
   }
 
+  label.document::after {
+    border-bottom: 2px solid
+      ${(props) => (props.documentError ? colors.blue4 : "red")};
+  }
+
   label.password::after {
     border-bottom: 2px solid
       ${(props) => (props.passwordError ? colors.blue4 : "red")};
+  }
+
+  label.passwordCheck::after {
+    border-bottom: 2px solid
+      ${(props) => (props.passwordCheckError ? colors.blue4 : "red")};
   }
 
   span {
@@ -102,10 +145,10 @@ export const StyledForm = styled.form`
   }
 
   button {
-    padding: 4% 0;
+    padding: 8px 0;
     border: none;
     border-radius: 10px;
-    margin-top: 10%;
+    margin: 15px 0;
     outline: none;
     font-size: 1rem;
     color: ${colors.gray2};
@@ -119,7 +162,7 @@ export const StyledForm = styled.form`
   }
 
   p {
-    height: 10px;
+    height: 15px;
     color: red;
     font-size: 0.8rem;
   }
