@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -12,6 +13,16 @@ import DoctorRequest from "../pages/DoctorRequest";
 const Routes = () => {
   return (
     <>
+      <AnimatePresence>
+        <Switch>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
+      </AnimatePresence>
       <Switch>
         <Route exact path="/doctor/request">
           <DoctorRequest />
