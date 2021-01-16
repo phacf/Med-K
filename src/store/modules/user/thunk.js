@@ -1,45 +1,30 @@
 import { api } from "../../../services/api";
-import { getPatient,getVaccines,getExams,getConsultations } from "./actions";
+import { getPatient, getVaccines, getExams, getConsultations } from "./actions";
 import jwt_decode from "jwt-decode";
 
-//login decodifica token e guarda tudo no local
-export const userLoginThunk = (userInfo, setError) => (dispatch) => {
-  api
-    .post(`/login`, { userInfo })
-    .then((res) => {
-      localStorage.setItem("authToken", JSON.stringify(res.data));
-      localStorage.setItem("user",JSON.stringify(jwt_decode(res.data)))
-    })
-    .catch((error) => {
-      setError(true);
-      console.error(error);
-    });
-};
+import { getPatient } from "./actions";
+import { api } from "../../../services/api";
 
-//medico busca paciente
-export const GetPatientThunk = (cpf) => (dispatch) => {
+export const getPatientExamThunk = (cpf) => (diapatch) => {
   api
-    .get(`/users?q=${cpf}`)
-    .then((res) => {
-      dispatch(getPatient(res.data));
-    })
+    .get(`user?q=${cpf}`)
+    .then((res) => dispatchEvent(getPatient(res.data)))
     .catch((error) => console.error(error));
 };
+export const addPatientConsultThunk = (cpf) => (diapatch) => {
+  api
+    .patch(`consultations?q=${cpf}`)
 
-//get de vacina
-export const getVacineThunk = (cpf) => (dispatch) => {
-  api.get(`vaccines?q=${cpf}`)
-  .then((res)=> getVaccines(res.data))
-  .catch((error) => console.error(error));
+    .catch((error) => console.error(error));
 };
+export const addPatientExamsThunk = (cpf) => (diapatch) => {
+  api
+    .patch(`exams?q=${cpf}`)
 
-//get de consulta
-export const getConsultationsThunk = (cpf) => (dispatch) => {
-  api.get(`consultations?q=${cpf}`)
-  .catch((error) => console.error(error));
+    .catch((error) => console.error(error));
 };
-//get de exame
-export const getExamsThunk = (cpf) => (dispatch) => {
-  api.get(`exams?q=${cpf}`)
-  .catch((error) => console.error(error));
+export const getPatientVaccineThunk = (cpf) => (diapatch) => {
+  api.patch(`vaccines?q=${cpf}`)
+  
+  .catch((error)=>console.error(error))
 };
