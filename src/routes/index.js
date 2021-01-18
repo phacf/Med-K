@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import Header from "../components/Header";
+import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -50,31 +51,33 @@ const Routes = () => {
     <>
       <AnimatePresence>
         <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
-        <Switch>
-          <Route exact path="/doctor/request">
-            <DoctorRequest />
-          </Route>
+        <PageContent>
+          <Switch>
+            <Route exact path="/doctor/request">
+              <DoctorRequest />
+            </Route>
 
-          <Route exact path="/doctor/exams">
-            <DoctorExams />
-          </Route>
+            <Route exact path="/doctor/exams">
+              <DoctorExams />
+            </Route>
 
-          <Route exact path="/patient/consult">
-            <PatientConsult />
-          </Route>
+            <Route exact path="/patient/consult">
+              <PatientConsult />
+            </Route>
 
-          <Route exact path="/patient/exam">
-            <PatientExam />
-          </Route>
+            <Route exact path="/patient/exam">
+              <PatientExam />
+            </Route>
 
-          <Route exact path="/menu/patient">
-            <MenuPatient />
-          </Route>
+            <Route exact path="/menu/patient">
+              <MenuPatient />
+            </Route>
 
-          <Route exact path="/menu/doctor">
-            <MenuDoctor />
-          </Route>
-        </Switch>
+            <Route exact path="/menu/doctor">
+              <MenuDoctor />
+            </Route>
+          </Switch>
+        </PageContent>
       </AnimatePresence>
     </>
   );
