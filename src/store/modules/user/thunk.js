@@ -11,20 +11,20 @@ export const getPatientExamThunk = (cpf) => (dispatch) => {
     .then((res) => dispatch(getPatient(res.data)))
     .catch((error) => console.error(error));
 };
-export const addPatientConsultThunk = (cpf) => (dispatch) => {
+export const addPatientConsultThunk = (cpf, data) => (dispatch) => {
   api
-    .patch(`consultations?q=${cpf}`)
+    .patch(`consultations?q=${cpf}`data)
 
     .catch((error) => console.error(error));
 };
-export const addPatientExamsThunk = (cpf) => (dispatch) => {
+export const addPatientExamsThunk = (cpf,data) => (dispatch) => {
   api
-    .patch(`exams?q=${cpf}`)
+    .patch(`exams?q=${cpf}`,data)
 
     .catch((error) => console.error(error));
 };
-export const getPatientVaccineThunk = (cpf) => (dispatch) => {
-  api.patch(`vaccines?q=${cpf}`)
+export const getPatientVaccineThunk = (cpf,data) => (dispatch) => {
+  api.patch(`vaccines?q=${cpf}`,data)
   
   .catch((error)=>console.error(error))
 };
