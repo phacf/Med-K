@@ -10,9 +10,15 @@ import Motion from "../Motion";
 import logo from "../../assets/logo.png";
 
 const LoginForm = () => {
+  const email = yup
+    .string()
+    .email("Email inválido")
+    .required("Campo requerido");
+
+  const password = yup.string().required("Campo requerido");
   const schema = yup.object().shape({
-    email: yup.string().email("Email inválido").required("Campo requerido"),
-    password: yup.string().required("Campo requerido"),
+    email,
+    password,
   });
 
   const { register, handleSubmit, errors } = useForm({
@@ -42,9 +48,7 @@ const LoginForm = () => {
               required
               ref={register}
               onChange={(e) =>
-                schema
-                  .isValid({ email: e.target.value, password: "12345678" })
-                  .then((valid) => setEmailError(valid))
+                email.isValid(e.target.value).then((res) => setEmailError(res))
               }
             ></input>
             <label htmlFor="email" className="email">
@@ -59,12 +63,9 @@ const LoginForm = () => {
               ref={register}
               type="password"
               onChange={(e) =>
-                schema
-                  .isValid({
-                    email: "teste@teste.com",
-                    password: e.target.value,
-                  })
-                  .then((valid) => setPasswordError(valid))
+                password
+                  .isValid(e.target.value)
+                  .then((res) => setPasswordError(res))
               }
             ></input>
             <label htmlFor="password" className="password">
