@@ -11,7 +11,7 @@ import logo from "../../assets/logo.png";
 const LoginForm = () => {
   const schema = yup.object().shape({
     email: yup.string().email("Email inválido").required("Campo requerido"),
-    password: yup.string().min(8, "Senha inválida").required("Campo requerido"),
+    password: yup.string().min(6, "Senha inválida").required("Campo requerido"),
   });
 
   const { register, handleSubmit, errors } = useForm({
