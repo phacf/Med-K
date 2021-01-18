@@ -15,7 +15,6 @@ const MenuDoctor = () => {
     justifyContent: "space-around",
   };
 
-
   const divStyle1 = {};
 
   const divStyle2 = {};
