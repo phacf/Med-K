@@ -1,45 +1,72 @@
-import { api } from "../../../services/api";
-import { getPatient,getVaccines,getExams,getConsultations } from "./actions";
+import { getPatient, getPatientInfo, getAllPatients } from "./actions";
+import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { api } from "../../../services/api";
 
-//login decodifica token e guarda tudo no local
-export const userLoginThunk = (userInfo, setError) => (dispatch) => {
+export const getPatientExamThunk = (cpf) => (dispatch) => {
   api
-    .post(`/login`, { userInfo })
-    .then((res) => {
-      localStorage.setItem("authToken", JSON.stringify(res.data));
-      localStorage.setItem("user",JSON.stringify(jwt_decode(res.data)))
-    })
-    .catch((error) => {
-      setError(true);
-      console.error(error);
-    });
-};
-
-//medico busca paciente
-export const GetPatientThunk = (cpf) => (dispatch) => {
-  api
-    .get(`/users?q=${cpf}`)
-    .then((res) => {
-      dispatch(getPatient(res.data));
-    })
+    .get(`user?q=${cpf}`)
+    .then((res) => dispatch(getPatient(res.data)))
     .catch((error) => console.error(error));
 };
+export const addPatientConsultThunk = (cpf) => (dispatch) => {
+  api
+    .patch(`consultations?q=${cpf}`)
 
-//get de vacina
-export const getVacineThunk = (cpf) => (dispatch) => {
-  api.get(`vaccines?q=${cpf}`)
-  .then((res)=> getVaccines(res.data))
-  .catch((error) => console.error(error));
+    .catch((error) => console.error(error));
+};
+export const addPatientExamsThunk = (cpf) => (dispatch) => {
+  api
+    .patch(`exams?q=${cpf}`)
+
+    .catch((error) => console.error(error));
+};
+export const getPatientVaccineThunk = (cpf) => (dispatch) => {
+  api
+    .patch(`vaccines?q=${cpf}`)
+
+    .catch((error) => console.error(error));
+};
+export const getAllPatientsThunk = (token) => (dispatch) => {
+  axios
+    .get("https://api-capstone-medik.herokuapp.com/users?type=patient", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getAllPatients(res.data));
+    })
+    .catch((err) => console.log(err));
 };
 
-//get de consulta
-export const getConsultationsThunk = (cpf) => (dispatch) => {
-  api.get(`consultations?q=${cpf}`)
-  .catch((error) => console.error(error));
+const selectRoute = (id, token, setUserType, dispatch) => {
+  api
+    .get(`users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      const userType = res.data.type;
+      setUserType(userType);
+      console.log(res.data);
+      dispatch(getPatientInfo(res.data));
+    })
+    .catch((err) => console.log(err));
 };
-//get de exame
-export const getExamsThunk = (cpf) => (dispatch) => {
-  api.get(`exams?q=${cpf}`)
-  .catch((error) => console.error(error));
+
+export const getPatientInfoThunk = (data, setUserType, setUserId) => (
+  dispatch,
+  _
+) => {
+  api
+    .post("login", { ...data })
+    .then((res) => {
+      const token = res.data.accessToken;
+      const id = jwt_decode(token).sub;
+      localStorage.setItem("authToken", JSON.stringify(token));
+      selectRoute(id, token, setUserType, dispatch);
+      setUserId(id);
+    })
+    .catch((err) => console.log(err));
 };
