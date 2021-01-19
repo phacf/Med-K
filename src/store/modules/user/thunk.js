@@ -34,16 +34,19 @@ export const getAllPatientsThunk = () => (dispatch) => {
 };
 
 export const userLoginThunk = (data) => (dispatch) => {
-  console.log(data);
   api
     .post("login", data)
     .then((res) => {
-      localStorage.setItem("authToken", JSON.stringify(res.data));
+      localStorage.setItem("authToken", JSON.stringify(res.data.accessToken));
       const id = jwt_decode(res.data.accessToken).sub;
+      const token = res.data.accessToken;
       api
-        .get(`users/${id}`)
+        .get(`users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((res) => {
-          console.log(res.data);
           dispatch(getUser(res.data));
         })
         .catch((error) => console.error(error));
@@ -53,4 +56,17 @@ export const userLoginThunk = (data) => (dispatch) => {
 
 export const userRegisterThunk = (data) => {
   api.post("users", data).catch((error) => console.error(error));
+};
+
+// Confirmar Agendamento
+export const getPatientConfirm = (id, changed) => (dispatch) => {
+  api
+    .patch(`users/${id}`, {
+      consultations: changed,
+    })
+    .then((res) => {
+      console.log(res.data);
+      dispatch(getUser(res.data));
+    })
+    .catch((err) => console.log(err));
 };
