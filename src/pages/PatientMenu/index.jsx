@@ -1,5 +1,4 @@
 import { Link, useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 export default function MenuPatient() {
   const divStyle = {
@@ -28,22 +27,13 @@ export default function MenuPatient() {
   const divStyle6 = {};
 
   const history = useHistory();
-  const { id } = useParams();
 
   return (
     <div style={divStyle}>
       <h1>Bem-vindo ao Medi-k</h1>
       <div>
-        <div>
-          <button onClick={() => history.push(`/patient/consult/${id}`)}>
-            Histórico de consultas
-          </button>
-        </div>
-        <div>
-          <button onClick={() => history.push(`/patient/exam/${id}`)}>
-            Resultados de exames
-          </button>
-        </div>
+        <div>Histórico de consultas</div>
+        <div>Resultados de exames</div>
         <div>
           <Link to="/rick-and-morty-characters">Carteira de vacinação</Link>
         </div>

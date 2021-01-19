@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+// alterar nome das requisições
+
 const PatientConsult = () => {
   const { id } = useParams();
   const dispatch = useDispatch();

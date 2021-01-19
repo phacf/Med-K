@@ -1,4 +1,5 @@
 import { Container, Section, DescriptionDate, Date } from "./styles";
+<<<<<<< HEAD
 import { getPatientExamThunk } from "../../store/modules/user/thunk";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,11 +17,16 @@ const PatientExam = () => {
     dispatch(getPatientExamThunk(id));
   }, []);
 
+=======
+
+const PatientExam = () => {
+>>>>>>> 17f3358671665ac86c030c31b04e6cfb00587ee9
   return (
     <Container>
       <h1 className="container_title">Suas Consultas</h1>
       <Section>
         <Date>
+<<<<<<< HEAD
           {user.exams?.map((exam, index) => (
             <button
               className="date_button"
@@ -36,6 +42,15 @@ const PatientExam = () => {
           <p className="descriptiondate_type">{examDetails.type}</p>
           <p className="descriptiondate_description">
             {examDetails.details ? examDetails.details : "Sem descrição"}
+=======
+          <button className="date_button">03/02</button>
+        </Date>
+        <DescriptionDate>
+          <p className="descriptiondate_date">03/02</p>
+          <p className="descriptiondate_type">Prostata</p>
+          <p className="descriptiondate_description">
+            lspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpalspalspalspalspalsaplspalspaslapslapslpa
+>>>>>>> 17f3358671665ac86c030c31b04e6cfb00587ee9
           </p>
         </DescriptionDate>
       </Section>

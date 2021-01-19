@@ -1,5 +1,10 @@
 import { Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+
+import Header from "../components/Header";
+import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -11,40 +16,68 @@ import DoctorExams from "../pages/DoctorExams";
 import DoctorRequest from "../pages/DoctorRequest";
 
 const Routes = () => {
+  const [isAuthenticated, setAuthentication] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+      setAuthentication(true);
+      if (location.pathname === "/") {
+        history.push("/");
+      }
+    }
+  }, [location.pathname, history]);
+
+  if (isAuthenticated === false) {
+    return (
+      <>
+        <AnimatePresence>
+          <Switch>
+            <Route exact path="/register">
+              <Register />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+          </Switch>
+        </AnimatePresence>
+      </>
+    );
+  }
+
   return (
     <>
       <AnimatePresence>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/doctor/request">
-            <DoctorRequest />
-          </Route>
+        <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
+        <PageContent>
+          <Switch>
+            <Route exact path="/doctor/request">
+              <DoctorRequest />
+            </Route>
 
-          <Route path="/doctor/exams">
-            <DoctorExams />
-          </Route>
+            <Route exact path="/doctor/exams">
+              <DoctorExams />
+            </Route>
 
-          <Route path="/patient/consult/:id">
-            <PatientConsult />
-          </Route>
+            <Route exact path="/patient/consult">
+              <PatientConsult />
+            </Route>
 
-          <Route path="/patient/exam/:id">
-            <PatientExam />
-          </Route>
+            <Route exact path="/patient/exam">
+              <PatientExam />
+            </Route>
 
-          <Route path="/menu/patient/:id">
-            <MenuPatient />
-          </Route>
+            <Route exact path="/menu/patient">
+              <MenuPatient />
+            </Route>
 
-          <Route path="/menu/doctor/:id">
-            <MenuDoctor />
-          </Route>
-        </Switch>
+            <Route exact path="/menu/doctor">
+              <MenuDoctor />
+            </Route>
+          </Switch>
+        </PageContent>
       </AnimatePresence>
     </>
   );

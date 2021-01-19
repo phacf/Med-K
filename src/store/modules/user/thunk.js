@@ -1,6 +1,37 @@
-import { getPatientInfo } from "./actions";
-import { api } from "../../../services/api";
+import { getPatient, getPatientInfo, getAllPatients } from "./actions";
 import jwt_decode from "jwt-decode";
+import { api } from "../../../services/api";
+
+export const getPatientExamThunk = (cpf) => (dispatch) => {
+  api
+    .get(`user?q=${cpf}`)
+    .then((res) => dispatch(getPatient(res.data)))
+    .catch((error) => console.error(error));
+};
+export const addPatientConsultThunk = (cpf) => (dispatch) => {
+  api
+    .patch(`consultations?q=${cpf}`)
+
+    .catch((error) => console.error(error));
+};
+export const addPatientExamsThunk = (cpf) => (dispatch) => {
+  api
+    .patch(`exams?q=${cpf}`)
+
+    .catch((error) => console.error(error));
+};
+export const getPatientVaccineThunk = (cpf) => (dispatch) => {
+  api
+    .patch(`vaccines?q=${cpf}`)
+
+    .catch((error) => console.error(error));
+};
+export const getAllPatientsThunk = () => (dispatch) => {
+  api
+    .get(`users?type=:patient`)
+    .then((res) => dispatch(getAllPatients(res.data)))
+    .catch((error) => console.error(error));
+};
 
 // Definir a rota de acordo com o tipo
 const selectRoute = (id, setUserType) => {
@@ -31,16 +62,6 @@ export const getPatientThunk = (data, setUserType, setUserId) => (_) => {
     .catch((err) => console.log(err));
 };
 
-// Consumir Exames
-export const getPatientExamThunk = (id) => (dispatch) => {
-  api
-    .get(`exams/${id}`)
-    .then((res) => {
-      dispatch(getPatientInfo(res.data));
-    })
-    .catch((err) => console.log(err));
-};
-
 // Consumir Consultas
 export const getPatientConsultThunk = (id) => (dispatch) => {
   api
@@ -48,14 +69,6 @@ export const getPatientConsultThunk = (id) => (dispatch) => {
     .then((res) => {
       dispatch(getPatientInfo(res.data));
     })
-    .catch((err) => console.log(err));
-};
-
-// Consumir Vacinas
-export const getPatientVaccineThunk = (id) => (dispatch) => {
-  api
-    .get(`vaccines${id}`)
-    .then((res) => dispatch(getPatientInfo(res.data)))
     .catch((err) => console.log(err));
 };
 
