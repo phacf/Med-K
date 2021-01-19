@@ -8,12 +8,11 @@ import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import MenuDoctor from "../pages/DoctorMenu";
-import MenuPatient from "../pages/PatientMenu";
 import PatientConsult from "../pages/PatientConsult";
 import PatientExam from "../pages/PatientExam";
 import DoctorExams from "../pages/DoctorExams";
 import DoctorRequest from "../pages/DoctorRequest";
+import Welcome from "../pages/Welcome";
 
 const Routes = () => {
   const [isAuthenticated, setAuthentication] = useState(false);
@@ -35,10 +34,10 @@ const Routes = () => {
       <>
         <AnimatePresence>
           <Switch>
-            <Route exact path="/register">
+            <Route exact path="/cadastro">
               <Register />
             </Route>
-            <Route exact path="/login">
+            <Route path="/">
               <Login />
             </Route>
           </Switch>
@@ -47,40 +46,32 @@ const Routes = () => {
     );
   }
 
-  return (
-    <>
-      <AnimatePresence>
-        <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
-        <PageContent>
-          <Switch>
-            <Route exact path="/doctor/request">
-              <DoctorRequest />
-            </Route>
-
-            <Route exact path="/doctor/exams">
-              <DoctorExams />
-            </Route>
-
-            <Route exact path="/patient/consult">
-              <PatientConsult />
-            </Route>
-
-            <Route exact path="/patient/exam">
-              <PatientExam />
-            </Route>
-
-            <Route exact path="/menu/patient">
-              <MenuPatient />
-            </Route>
-
-            <Route exact path="/menu/doctor">
-              <MenuDoctor />
-            </Route>
-          </Switch>
-        </PageContent>
-      </AnimatePresence>
-    </>
-  );
+  // if (type === "doctor") {
+  //   return (
+  //     <>
+  //       <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
+  //       <PageContent>
+  //         <Switch>
+  //           <Route exact path="/medico/solicitacoes">
+  //             <DoctorRequest />
+  //           </Route>
+  //           <Route exact path="/medico/exames">
+  //             <DoctorExams />
+  //           </Route>
+  //           <Route exact path="/paciente/consultas">
+  //             <PatientConsult />
+  //           </Route>
+  //           <Route exact path="/paciente/exames">
+  //             <PatientExam />
+  //           </Route>
+  //           <Route path="/">
+  //             <Welcome />
+  //           </Route>
+  //         </Switch>
+  //       </PageContent>
+  //     </>
+  //   );
+  // }
 };
 
 export default Routes;

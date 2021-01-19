@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const token = localStorage.getItem("authToken");
+const token = JSON.parse(localStorage.getItem("authToken"));
 
 export const api = axios.create({
   baseURL: "https://api-capstone-medik.herokuapp.com/",
-  headers: { Authorization: `Bearer ${token}` },
   headers: {
     Authorization: `Bearer ${token}`,
   },

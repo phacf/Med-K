@@ -58,3 +58,19 @@ export const DescriptionDate = styled.div`
     margin: 2% 0 0 1.2%;
   }
 `;
+
+export const Notification = styled.div`
+  width: 100px;
+  height: 100px;
+  animation-name: showNotification;
+  animation-duration: 0.3s;
+
+  @keyframes showNotification {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
