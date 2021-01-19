@@ -4,10 +4,11 @@ const users = {
   patientInfo: [],
   userInfo: {},
   allPatientsInfo: [],
-  patientProfile: {},
+  
 };
 
 const usersReducer = (state = users, action) => {
+  console.log(state)
   switch (action.type) {
     case medicTypes.GET_PATIENT:
       const { patientInfo } = action;
@@ -22,6 +23,7 @@ const usersReducer = (state = users, action) => {
     case userType.GET_USER_INFO:
       const { userInfo } = action;
       users.userInfo = { ...userInfo };
+      
       return state;
 
     default:

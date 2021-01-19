@@ -19,7 +19,7 @@ const PatientConsult = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [consultDetails, setConsultDetails] = useState({});
-  const user = useSelector((state) => state.user.patientProfile);
+  const user = useSelector((state) => state.user.userInfo);
 
   const handleClick = (consult) => {
     setConsultDetails(consult);
@@ -37,9 +37,7 @@ const PatientConsult = () => {
     dispatch(getPatientConfirm(id, ...newConsults));
   };
 
-  useEffect(() => {
-    dispatch(getPatientConsultThunk(id));
-  }, [consultDetails.isConfirm]);
+
 
   return (
     <Container>
