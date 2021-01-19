@@ -1,4 +1,5 @@
 import { getPatient, getPatientInfo, getAllPatients } from "./actions";
+import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { api } from "../../../services/api";
 
@@ -26,11 +27,16 @@ export const getPatientVaccineThunk = (cpf) => (dispatch) => {
 
     .catch((error) => console.error(error));
 };
-export const getAllPatientsThunk = () => (dispatch) => {
-  api
-    .get(`users?type=:patient`)
-    .then((res) => dispatch(getAllPatients(res.data)))
-    .catch((error) => console.error(error));
+export const getAllPatientsThunk = (token) => (dispatch) => {
+  axios
+    .get("https://api-capstone-medik.herokuapp.com/users?type=patient", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getAllPatients(res.data));
+    })
+    .catch((err) => console.log(err));
 };
 
 const selectRoute = (id, token, setUserType, dispatch) => {

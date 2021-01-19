@@ -32,18 +32,16 @@ const Routes = () => {
 
   if (isAuthenticated === false) {
     return (
-      <>
-        <AnimatePresence>
-          <Switch>
-            <Route exact path="/register">
-              <Register />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-          </Switch>
-        </AnimatePresence>
-      </>
+      <AnimatePresence>
+        <Switch>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+        </Switch>
+      </AnimatePresence>
     );
   }
 
