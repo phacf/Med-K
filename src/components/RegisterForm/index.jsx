@@ -199,7 +199,7 @@ const RegisterForm = () => {
           <p>{errors.passwordCheck?.message}</p>
           <button type="submit">Cadastrar</button>
         </StyledForm>
-        <Link to="/">Login</Link>
+        <Link to="/login">Login</Link>
       </Content>
     </Motion>
   );

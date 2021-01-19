@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-
+import { getPatientInfoThunk } from "../../store/modules/user/thunk";
+import { useDispatch } from "react-redux";
 import { Content, StyledForm } from "../FormComponents/styles";
+import { useHistory } from "react-router-dom";
 import Motion from "../Motion";
 
 import logo from "../../assets/logo.png";
 
 const LoginForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [userType, setUserType] = useState("");
+  const [userId, setUserId] = useState("");
   const schema = yup.object().shape({
     email: yup.string().email("Email inválido").required("Campo requerido"),
     password: yup.string().required("Campo requerido"),
@@ -19,8 +25,13 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
+  useEffect(() => {
+    if (userType === "patient") return history.push(`/menu/patient/${userId}`);
+    if (userType === "doctor") return history.push(`/menu/doctor/${userId}`);
+  }, [userType]);
+
   const handleForm = (data) => {
-    console.log(data);
+    dispatch(getPatientInfoThunk(data, setUserType, setUserId));
   };
 
   const [emailError, setEmailError] = useState(false);

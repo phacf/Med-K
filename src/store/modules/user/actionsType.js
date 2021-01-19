@@ -1,9 +1,10 @@
-export const doctor = {
-  GET_PATIENT: "@doctor/GET_PATIENT",
+export const medicTypes = {
+  GET_PATIENT: "@medic/GET_PATIENT",
+  REQUEST_EXAM: "@medic/REQUEST_EXAM",
+  REQUEST_CONSULT: "@medic/REQUEST_CONSULT",
+  REQUEST_VACCINE: "@medic/REQUEST_VACCINE",
+  GET_ALL_PATIENTS: "@medic/GET_ALL_PATIENTS",
 };
-
-export const patient = {
-  GET_VACCINES: "@patient/GET_VACCINES",
-  GET_CONSULTATION: "@patient/GET_CONSULTATION",
-  GET_EXAMS: "@patient/GET_EXAMS",
+export const userType = {
+  PATIENT_INFO: "@GET/patient",
 };

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function MenuPatient() {
   const divStyle = {
@@ -10,21 +10,10 @@ export default function MenuPatient() {
     flexDirection: "column",
     borderRadius: "10px",
     display: "flex",
-    flexDirection: "column",
+    // flexDirection: "column",
     justifyContent: "space-around",
   };
-
-  const divStyle1 = {};
-
-  const divStyle2 = {};
-
-  const divStyle3 = {};
-
-  const divStyle4 = {};
-
-  const divStyle5 = {};
-
-  const divStyle6 = {};
+  const history = useHistory();
 
   return (
     <div style={divStyle}>
@@ -33,9 +22,11 @@ export default function MenuPatient() {
         <div>
           <Link to="/rick-and-morty-characters">Historico de Consultas</Link>
         </div>
-        <div>
-          <Link to="/rick-and-morty-characters">Resultados de exames</Link>
-        </div>
+        {/* <div> */}
+        {/* <button onClick={() => history.push(`/patient/exam/${id}`)}> */}
+        {/* Resultados de exames */}
+        {/* </button> */}
+        {/* </div> */}
         <div>
           <Link to="/rick-and-morty-characters">Carteira de vacinação</Link>
         </div>

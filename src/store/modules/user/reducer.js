@@ -1,27 +1,29 @@
-import { doctor, patient } from "./actionsType";
+import { medicTypes, userType } from "./actionsType";
 
 const users = {
-  doctor: {},
-  patient: {
-    vaccines: {},
-    exams: {},
-    consultations: {},
-  },
+  patientInfo: [],
+  allPatientsInfo: [],
+  patientProfile: {},
 };
+
 const usersReducer = (state = users, action) => {
   switch (action.type) {
-    case doctor.GET_PATIENT:
-      const { patient } = action;
-      state.patient = [...state.patient, patient];
-      return state.patient;
+    case medicTypes.GET_PATIENT:
+      const { patientInfo } = action;
+      users.patientInfo = patientInfo;
+      return state;
 
-    case patient.GET_VACCINES:
-      const { vaccines } = action;
-      state.patient = [...state.patient.vaccines, vaccines];
-      return state.patient;
+    case medicTypes.GET_ALL_PATIENTS:
+      const { patientsInfo } = action;
+      users.allPatientsInfo = [...patientsInfo];
+      return state;
 
+    case userType.PATIENT_INFO:
+      state.patientProfile = { ...actions.patientProfile };
+      return state;
     default:
       return state;
   }
 };
+
 export default usersReducer;
