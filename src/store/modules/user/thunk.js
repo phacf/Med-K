@@ -54,3 +54,26 @@ export const userLoginThunk = (data) => (dispatch) => {
 export const userRegisterThunk = (data) => {
   api.post("users", data).catch((error) => console.error(error));
 };
+
+// // Consumir Consultas
+// export const getPatientConsultThunk = (id) => (dispatch) => {
+//   api
+//     .get(`consultations/${id}`)
+//     .then((res) => {
+//       dispatch(getPatientInfo(res.data));
+//     })
+//     .catch((err) => console.log(err));
+// };
+
+// // Confirmar Agendamento
+// export const getPatientConfirm = (id, changeToTrue) => (dispatch) => {
+//   api
+//     .patch(`users/${id}`, {
+//       consultations: changeToTrue,
+//     })
+//     .then((res) => {
+//       console.log(res.data);
+//       dispatch(getPatientInfo(res.data));
+//     })
+//     .catch((err) => console.log(err));
+// };

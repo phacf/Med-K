@@ -3,7 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { userLoginThunk } from "../../store/modules/user/thunk";
+=======
+import { getPatientThunk } from "../../store/modules/user/thunk";
+>>>>>>> develop
 import { useDispatch } from "react-redux";
 import { Content, StyledForm } from "../FormComponents/styles";
 import { useHistory } from "react-router-dom";
@@ -31,7 +35,11 @@ const LoginForm = () => {
   });
 
   const handleForm = (data) => {
+<<<<<<< HEAD
     dispatch(userLoginThunk(data));
+=======
+    dispatch(getPatientThunk(data, setUserType, setUserId));
+>>>>>>> develop
   };
 
   const [emailError, setEmailError] = useState(false);
