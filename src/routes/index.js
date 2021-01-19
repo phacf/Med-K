@@ -29,7 +29,7 @@ const Routes = () => {
             <DoctorExams />
           </Route>
 
-          <Route path="/patient/consult">
+          <Route path="/patient/consult/:id">
             <PatientConsult />
           </Route>
 

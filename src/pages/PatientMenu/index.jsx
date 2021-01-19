@@ -35,7 +35,9 @@ export default function MenuPatient() {
       <h1>Bem-vindo ao Medi-k</h1>
       <div>
         <div>
-          <Link to="/rick-and-morty-characters">Historico de Consultas</Link>
+          <button onClick={() => history.push(`/patient/consult/${id}`)}>
+            Histórico de consultas
+          </button>
         </div>
         <div>
           <button onClick={() => history.push(`/patient/exam/${id}`)}>
