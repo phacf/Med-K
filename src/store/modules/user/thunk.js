@@ -1,4 +1,4 @@
-import { getPatient, getPatientInfo, getAllPatients } from "./actions";
+import { getPatient, getUser, getAllPatients } from "./actions";
 import jwt_decode from "jwt-decode";
 import { api } from "../../../services/api";
 
@@ -33,34 +33,24 @@ export const getAllPatientsThunk = () => (dispatch) => {
     .catch((error) => console.error(error));
 };
 
-const selectRoute = (id, token, setUserType, dispatch) => {
+export const userLoginThunk = (data) => (dispatch) => {
+  console.log(data);
   api
-    .get(`users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .post("login", data)
     .then((res) => {
-      const userType = res.data.type;
-      setUserType(userType);
-      console.log(res.data);
-      dispatch(getPatientInfo(res.data));
+      localStorage.setItem("authToken", JSON.stringify(res.data));
+      const id = jwt_decode(res.data.accessToken).sub;
+      api
+        .get(`users/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          dispatch(getUser(res.data));
+        })
+        .catch((error) => console.error(error));
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.error(error));
 };
 
-export const getPatientInfoThunk = (data, setUserType, setUserId) => (
-  dispatch,
-  _
-) => {
-  api
-    .post("login", { ...data })
-    .then((res) => {
-      const token = res.data.accessToken;
-      const id = jwt_decode(token).sub;
-      localStorage.setItem("authToken", JSON.stringify(token));
-      selectRoute(id, token, setUserType, dispatch);
-      setUserId(id);
-    })
-    .catch((err) => console.log(err));
+export const userRegisterThunk = (data) => {
+  api.post("users", data).catch((error) => console.error(error));
 };
