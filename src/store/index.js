@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import usersReducer from "./modules/user/reducer";
 
 const reducers = combineReducers({
-  patient: usersReducer,
+  user: usersReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

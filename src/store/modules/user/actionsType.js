@@ -5,3 +5,6 @@ export const medicTypes = {
   REQUEST_VACCINE: "@medic/REQUEST_VACCINE",
   GET_ALL_PATIENTS: "@medic/GET_ALL_PATIENTS",
 };
+export const userType = {
+  PATIENT_INFO: "@GET/patient",
+};
