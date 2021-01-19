@@ -8,42 +8,43 @@ import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import MenuDoctor from "../pages/DoctorMenu";
-import MenuPatient from "../pages/PatientMenu";
 import PatientConsult from "../pages/PatientConsult";
 import PatientExam from "../pages/PatientExam";
 import DoctorExams from "../pages/DoctorExams";
 import DoctorRequest from "../pages/DoctorRequest";
+import Welcome from "../pages/Welcome";
 
 const Routes = () => {
-  const [isAuthenticated, setAuthentication] = useState(false);
-  const history = useHistory();
-  const location = useLocation();
+  // const [isAuthenticated, setAuthentication] = useState(false);
+  // const history = useHistory();
+  // const location = useLocation();
 
-  useEffect(() => {
-    const token = window.localStorage.getItem("authToken");
-    if (token) {
-      setAuthentication(true);
-      if (location.pathname === "/") {
-        history.push("/");
-      }
-    }
-  }, [location.pathname, history]);
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem("authToken");
+  //   if (token) {
+  //     setAuthentication(true);
+  //     if (location.pathname === "/") {
+  //       history.push("/");
+  //     }
+  //   }
+  // }, [location.pathname, history]);
 
-  if (isAuthenticated === false) {
-    return (
-      <AnimatePresence>
-        <Switch>
-          <Route exact path="/register">
-            <Register />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-        </Switch>
-      </AnimatePresence>
-    );
-  }
+  // if (isAuthenticated === false) {
+  //   return (
+  //     <>
+  //       <AnimatePresence>
+  //         <Switch>
+  //           <Route exact path="/cadastro">
+  //             <Register />
+  //           </Route>
+  //           <Route path="/">
+  //             <Login />
+  //           </Route>
+  //         </Switch>
+  //       </AnimatePresence>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
@@ -51,28 +52,20 @@ const Routes = () => {
         <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
         <PageContent>
           <Switch>
-            <Route exact path="/doctor/request">
+            <Route exact path="/medico/solicitacoes">
               <DoctorRequest />
             </Route>
-
-            <Route exact path="/doctor/exams">
+            <Route exact path="/medico/exames">
               <DoctorExams />
             </Route>
-
-            <Route exact path="/patient/consult">
+            <Route exact path="/paciente/consultas">
               <PatientConsult />
             </Route>
-
-            <Route exact path="/patient/exam">
+            <Route exact path="/paciente/exames">
               <PatientExam />
             </Route>
-
-            <Route exact path="/menu/patient">
-              <MenuPatient />
-            </Route>
-
-            <Route exact path="/menu/doctor">
-              <MenuDoctor />
+            <Route path="/">
+              <Welcome />
             </Route>
           </Switch>
         </PageContent>

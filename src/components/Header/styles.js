@@ -12,6 +12,7 @@ export const StyledHeader = styled.header`
   top: 0;
   z-index: 1;
   background-color: ${colors.blue1};
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.3);
 
   img {
     width: 50px;
@@ -51,7 +52,7 @@ export const StyledHeader = styled.header`
     }
 
     ul {
-      width: 90%;
+      width: 60%;
       height: 100%;
       display: flex;
       justify-content: space-evenly;
@@ -64,16 +65,15 @@ export const StyledHeader = styled.header`
       display: flex;
       justify-content: center;
       align-items: center;
-      border-bottom: 2px solid ${colors.blue1};
       list-style: none;
-      font-size: 1.2rem;
-      color: ${colors.blue4};
+      font-size: 1rem;
+      color: ${colors.gray2};
       cursor: pointer;
     }
 
     li:hover {
       transition: 0.3s;
-      border-bottom: 2px solid ${colors.blue4};
+      color: ${colors.blue4};
     }
   }
 `;
