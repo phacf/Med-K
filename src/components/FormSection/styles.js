@@ -27,7 +27,7 @@ export const Content = styled.div`
   @media screen and (min-width: 768px) {
     width: 100%;
     height: 70vh;
-    min-height: 390px;
+    min-height: 500px;
     background-image: url(${background});
     background-size: cover;
   }

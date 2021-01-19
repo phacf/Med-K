@@ -4,8 +4,8 @@ import { colors } from "../../styles/colors";
 
 export const Content = styled.div`
   width: 100%;
-  height: 75vh;
-  min-height: 500px;
+  height: 100%;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +27,7 @@ export const Content = styled.div`
 
   @media screen and (min-width: 768px) {
     width: fit-content;
-    min-height: 490px;
+    min-height: 550px;
     margin: 0;
     margin-right: 15%;
   }
@@ -50,18 +50,20 @@ export const StyledForm = styled.form`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
   }
 
   div.radioInfo {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin: 0;
   }
 
   input {
     width: 100%;
     margin: 2% 0;
-    padding-top: 15px;
+    padding-top: 18px;
     border: none;
     outline: none;
     color: ${colors.gray2};
@@ -148,7 +150,7 @@ export const StyledForm = styled.form`
     padding: 8px 0;
     border: none;
     border-radius: 10px;
-    margin: 15px 0;
+    margin: 10px 0;
     outline: none;
     font-size: 1rem;
     color: ${colors.gray2};
