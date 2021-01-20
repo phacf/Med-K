@@ -47,7 +47,7 @@ export const userLoginThunk = (data) => (dispatch) => {
           },
         })
         .then((res) => {
-          localStorage
+          localStorage.setItem("userInfo", JSON.stringify(res.data))
           dispatch(getUser(res.data));
         })
         .catch((error) => console.error(error));
