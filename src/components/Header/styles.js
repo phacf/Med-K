@@ -20,7 +20,8 @@ export const StyledHeader = styled.header`
 
   ul,
   li,
-  a {
+  a,
+  button {
     display: none;
   }
 
@@ -71,9 +72,22 @@ export const StyledHeader = styled.header`
       cursor: pointer;
     }
 
-    li:hover {
+    li:hover,
+    button:hover {
       transition: 0.3s;
       color: ${colors.blue4};
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: ${colors.gray2};
+      border: none;
+      outline: none;
+      background-color: rgba(0, 0, 0, 0);
+      cursor: pointer;
     }
   }
 `;
