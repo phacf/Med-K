@@ -14,18 +14,18 @@ const PatientConsult = () => {
   const handleClick = (consult) => {
     setConsultDetails(consult);
   };
-  console.log(user);
-  const confirmConsult = () => {
-    const consult = { ...consultDetails, isConfirm: true };
-    const newConsults = user.consultations.map(({ type }, index, arr) => {
-      if (type === consult.type) {
-        arr.splice(index, 1);
-        arr.push(consult);
-      }
-      return arr;
-    });
-    dispatch(getPatientConfirm(...newConsults));
-  };
+
+  // const confirmConsult = () => {
+  //   const consult = { ...consultDetails, isConfirm: true };
+  //   const newConsults = user.consultations.map(({ type }, index, arr) => {
+  //     if (type === consult.type) {
+  //       arr.splice(index, 1);
+  //       arr.push(consult);
+  //     }
+  //     return arr;
+  //   });
+  //   dispatch(getPatientConfirm(...newConsults));
+  // };
 
   return (
     <Page>
@@ -56,15 +56,6 @@ const PatientConsult = () => {
           </DescriptionDate>
         </Section>
         <button className="container_button to_back">Voltar</button>
-        {consultDetails.isConfirm ? (
-          <button className="container_button" disabled>
-            Confirmado
-          </button>
-        ) : (
-          <button className="container_button" onClick={() => confirmConsult()}>
-            Confirmar
-          </button>
-        )}
       </Container>
     </Page>
   );

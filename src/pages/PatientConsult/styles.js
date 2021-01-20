@@ -27,12 +27,6 @@ export const Container = styled.div`
     width: 150px;
     box-shadow: 3px 3px 4px #b0b0b0, -1px 1px 4px #b0b0b0;
   }
-
-  .to_back {
-    @media (min-width: 769px) {
-      margin-right: 20px;
-    }
-  }
 `;
 
 export const Section = styled.div`
