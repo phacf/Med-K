@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
+export const Page = styled.div`
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const Container = styled.div`
   width: 80vw;
   height: 80vh;
-
+  text-align: center;
   box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
 
   h1 {
@@ -20,6 +27,12 @@ export const Container = styled.div`
     width: 150px;
     box-shadow: 3px 3px 4px #b0b0b0, -1px 1px 4px #b0b0b0;
   }
+
+  .to_back {
+    @media (min-width: 769px) {
+      margin-right: 20px;
+    }
+  }
 `;
 
 export const Section = styled.div`
@@ -27,6 +40,12 @@ export const Section = styled.div`
   height: 50%;
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
 `;
 
 export const Date = styled.section`
@@ -45,6 +64,18 @@ export const Date = styled.section`
     text-decoration: underline;
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 20%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 2%;
+    button {
+      margin: 0;
+      margin-left: 10px;
+    }
+  }
 `;
 
 export const DescriptionDate = styled.div`
@@ -56,6 +87,11 @@ export const DescriptionDate = styled.div`
 
   p {
     margin: 2% 0 0 1.2%;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 70%;
   }
 `;
 
