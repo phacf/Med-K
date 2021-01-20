@@ -7,13 +7,14 @@ import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import DoctorExams from "../pages/DoctorExams";
+import DoctorRequest from "../pages/DoctorRequest";
+import Welcome from "../pages/Welcome";
 import PatientConsult from "../pages/PatientConsult";
 import PatientExam from "../pages/PatientExam";
 import PatientRequests from "../pages/PatientRequests";
 import PatientVaccines from "../pages/PatientVaccines";
-import DoctorExams from "../pages/DoctorExams";
-import DoctorRequest from "../pages/DoctorRequest";
-import Welcome from "../pages/Welcome";
+import Info from "../pages/Info";
 
 const Routes = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -68,17 +69,22 @@ const Routes = () => {
             "Vacinas",
             "Informações",
           ]}
-          paths={["/exames", "/consultas", "/solicitacoes", "/vacinas"]}
+          paths={[
+            "/exames",
+            "/consultas",
+            "/solicitacoes",
+            "/vacinas",
+            "/informacoes",
+          ]}
         />
         <PageContent>
           <Switch>
-            <Route exact path="/">
-              <Route path="/exames" component={PatientExam} />
-              <Route path="/consultas" component={PatientConsult} />
-              <Route path="/solicitacoes" component={PatientRequests} />
-              <Route path="/vacinas" component={PatientVaccines} />
-              <Welcome />
-            </Route>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/exames" component={PatientExam} />
+            <Route exact path="/consultas" component={PatientConsult} />
+            <Route path="/solicitacoes" component={PatientRequests} />
+            <Route path="/vacinas" component={PatientVaccines} />
+            <Route path="/informacoes" component={Info} />
           </Switch>
         </PageContent>
       </>
