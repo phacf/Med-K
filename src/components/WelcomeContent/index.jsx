@@ -2,10 +2,10 @@ import Bounce from "react-reveal/Bounce";
 
 import { StyledContent } from "./styles";
 
-const WelcomeContent = ({ isDoctor }) => {
+const WelcomeContent = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   return (
-    <StyledContent>
+    <StyledContent isMedic={userInfo.type === "medic"}>
       <Bounce left>
         <h1>
           Bem vindo(a),

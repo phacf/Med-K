@@ -31,12 +31,8 @@ const Routes = () => {
       <>
         <AnimatePresence>
           <Switch>
-            <Route exact path="/cadastro">
-              <Register />
-            </Route>
-            <Route path="/">
-              <Login />
-            </Route>
+            <Route exact path="/" component={Login} />
+            <Route path="/cadastro" component={Register} />
           </Switch>
         </AnimatePresence>
       </>
@@ -52,22 +48,16 @@ const Routes = () => {
         />
         <PageContent>
           <Switch>
-            <Route exact path="/exames">
-              <DoctorExams />
-            </Route>
-            <Route exact path="/solicitacoes">
-              <DoctorRequest />
-            </Route>
-            <Route path="/">
-              <Welcome />
-            </Route>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/exames" component={DoctorExams} />
+            <Route path="/solicitacoes" component={DoctorRequest} />
           </Switch>
         </PageContent>
       </>
     );
   }
 
-  if (isAuthenticated && userInfo.type === "patient") {
+  if (userInfo.type === "patient") {
     return (
       <>
         <Header
@@ -82,19 +72,11 @@ const Routes = () => {
         />
         <PageContent>
           <Switch>
-            <Route exact path="/exames">
-              <PatientExam />
-            </Route>
-            <Route exact path="/consultas">
-              <PatientConsult />
-            </Route>
-            <Route exact path="/solicitacoes">
-              <PatientRequests />
-            </Route>
-            <Route exact path="/vacinas">
-              <PatientVaccines />
-            </Route>
-            <Route path="/">
+            <Route exact path="/">
+              <Route path="/exames" component={PatientExam} />
+              <Route path="/consultas" component={PatientConsult} />
+              <Route path="/solicitacoes" component={PatientRequests} />
+              <Route path="/vacinas" component={PatientVaccines} />
               <Welcome />
             </Route>
           </Switch>

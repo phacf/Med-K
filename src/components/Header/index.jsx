@@ -29,15 +29,16 @@ const Header = ({ menuItems, paths }) => {
                 </li>
               ))}
             </ul>
-            <button
-              onClick={() => {
-                localStorage.clear();
-                window.location.reload(true);
-              }}
-            >
-              <FiLogOut />
-            </button>
           </nav>
+          <button
+            onClick={() => {
+              localStorage.clear();
+              history.push("/");
+              document.location.reload(true);
+            }}
+          >
+            <FiLogOut />
+          </button>
         </div>
       </StyledHeader>
       <MobileMenu
