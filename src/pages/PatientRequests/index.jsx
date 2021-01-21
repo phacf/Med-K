@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {FullCalendarDemo} from './../../components/calendar';
 
 const PatientRequest = () => {
   const schema = yup.object().shape({
@@ -38,6 +39,7 @@ const PatientRequest = () => {
 
   return (
     <div>
+      <FullCalendarDemo />
       <form style={divStyle} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <h1>Solicitações</h1>
