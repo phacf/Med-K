@@ -46,7 +46,6 @@ export const SectionForm = styled.section`
    label.ant-form-item-required {
     color: ${colors.gray2};
   }
-
   @media (max-width: 780px) {
     width: 320px;
     border-top: ${(props) =>

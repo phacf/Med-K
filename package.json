@@ -18,7 +18,7 @@
     "primereact": "^6.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-hook-form": "^6.14.1",
+    "react-hook-form": "^6.14.2",
     "react-icons": "^4.1.0",
     "react-redux": "^7.2.2",
     "react-reveal": "^1.2.2",
@@ -36,13 +36,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {

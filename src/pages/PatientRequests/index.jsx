@@ -48,7 +48,7 @@ const PatientRequest = () => {
   };
 
   return (
-    <StyledPatientsRequestContent>
+    <StyledPatientRequests>
       <PageTitle title={"Solicitações"} />
       <Slide bottom>
         <Content>
