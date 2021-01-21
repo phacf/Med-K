@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { userLoginThunk } from "../../store/modules/user/thunk";
@@ -26,7 +26,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
+    validationSchema: schema,
   });
 
   const handleForm = (data) => {
