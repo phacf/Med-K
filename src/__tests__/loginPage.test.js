@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import store from "../store";
 import { Router } from "react-router";
 import { createMemoryHistory } from "history";
+import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 
 describe("When everything is okay:", () => {
   const history = createMemoryHistory();
@@ -26,5 +28,8 @@ describe("When everything is okay:", () => {
     expect(InputSenha).toBeInTheDocument();
     expect(InputEmail).toBeInTheDocument();
     expect(TextLogin).toBeInTheDocument();
+  });
+  test("should open register page", async () => {
+    await userEvent.click(screen.getByText("Cadastre-se"));
   });
 });
