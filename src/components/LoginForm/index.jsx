@@ -1,41 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import { userLoginThunk } from "../../store/modules/user/thunk";
+import { getPatientInfoThunk } from "../../store/modules/user/thunk";
 import { useDispatch } from "react-redux";
 import { Content, StyledForm } from "../FormComponents/styles";
+import { useHistory } from "react-router-dom";
 import Motion from "../Motion";
 
 import logo from "../../assets/logo.png";
 
 const LoginForm = () => {
-  const email = yup
-    .string()
-    .email("Email inválido")
-    .required("Campo requerido");
-
-  const password = yup.string().required("Campo requerido");
-
-  const schema = yup.object().shape({
-    email,
-    password,
-  });
-
+  const history = useHistory();
   const dispatch = useDispatch();
+  const [userType, setUserType] = useState("");
+  const [userId, setUserId] = useState("");
+  const schema = yup.object().shape({
+    email: yup.string().email("Email inválido").required("Campo requerido"),
+    password: yup.string().required("Campo requerido"),
+  });
 
   const { register, handleSubmit, errors } = useForm({
-    validationSchema: schema,
+    resolver: yupResolver(schema),
   });
 
+  useEffect(() => {
+    if (userType === "patient") return history.push(`/menu/patient/${userId}`);
+    if (userType === "doctor") return history.push(`/menu/doctor/${userId}`);
+  }, [userType]);
+
   const handleForm = (data) => {
-    dispatch(userLoginThunk(data, setError));
+    dispatch(getPatientInfoThunk(data, setUserType, setUserId));
   };
 
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [error, setError] = useState(false);
 
   return (
     <Motion>
@@ -53,7 +53,9 @@ const LoginForm = () => {
               required
               ref={register}
               onChange={(e) =>
-                email.isValid(e.target.value).then((res) => setEmailError(res))
+                schema
+                  .isValid({ email: e.target.value, password: "12345678" })
+                  .then((valid) => setEmailError(valid))
               }
             ></input>
             <label htmlFor="email" className="email">
@@ -68,19 +70,22 @@ const LoginForm = () => {
               ref={register}
               type="password"
               onChange={(e) =>
-                password
-                  .isValid(e.target.value)
-                  .then((res) => setPasswordError(res))
+                schema
+                  .isValid({
+                    email: "teste@teste.com",
+                    password: e.target.value,
+                  })
+                  .then((valid) => setPasswordError(valid))
               }
             ></input>
             <label htmlFor="password" className="password">
               <span className="labelSpan">Senha</span>
             </label>
           </div>
-          <p>{error && "Email ou senha invalidos"}</p>
+          <p>{errors.password?.message}</p>
           <button type="submit">Entrar</button>
         </StyledForm>
-        <Link to="/cadastro">Cadastre-se</Link>
+        <Link to="/register">Cadastre-se</Link>
       </Content>
     </Motion>
   );
