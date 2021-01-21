@@ -23,6 +23,9 @@ export const ContainerForm = styled.div`
   background: ${colors.blue1};
   height: 50vh;
   margin-bottom: 20px;
+  @media (max-width: 760px) {
+    height: auto;
+  }
 `;
 
 export const SectionData = styled.section`
@@ -39,6 +42,10 @@ export const SectionData = styled.section`
   div.scroll-history {
     height: 45vh;
     overflow-y: ${(props) => (props.scroll ? "auto" : "hidden")};
+  }
+  @media (max-width: 760px) {
+    width: 100%;
+    border: none;
   }
 `;
 
@@ -89,6 +96,11 @@ export const SectionDescription = styled.section`
   div p {
     text-indent: 20px;
     margin: 20px 10px;
+  }
+  @media (max-width: 760px) {
+    border-top: 1px solid rgb(193, 206, 255);
+    width: 100%;
+    margin: 25px;
   }
 `;
 

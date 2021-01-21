@@ -56,10 +56,12 @@ const DoctorExams = () => {
                 <div>
                   <NewButton key={index} onClick={handleDate} id={index}>
                     {exam.data
-                      .replace(/[A-Z].*Z/, "")
-                      .split("-")
-                      .reverse()
-                      .join("-")}
+                      ? exam.data
+                          .replace(/[A-Z].*Z/, "")
+                          .split("-")
+                          .reverse()
+                          .join("-")
+                      : exam.protocol}
                   </NewButton>
                 </div>
               );
@@ -75,12 +77,21 @@ const DoctorExams = () => {
               <div>
                 <h3>Procedimento: {exam.type}</h3>
                 <h4>
-                  Data:
-                  {exam.data
+                  <span>
+                    {console.log(exam)}
+                    {exam.data &&
+                      `Data:
+                  ${exam.data
                     .replace(/[A-Z].*Z/, "")
                     .split("-")
                     .reverse()
-                    .join("-")}
+                    .join("-")}`}
+                  </span>
+                  <span>
+                    {exam.protocol &&
+                      `Nº protocolo:
+                  ${exam.protocol}`}
+                  </span>
                 </h4>
                 <div className="description-exams">
                   <p>Descrição: {exam.description}</p>
