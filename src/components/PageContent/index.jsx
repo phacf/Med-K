@@ -1,7 +1,11 @@
 import { StyledContent } from "./styles";
 
 const PageContent = ({ children }) => {
-  return <StyledContent>{children}</StyledContent>;
+  return (
+    <StyledContent>
+      <div>{children}</div>
+    </StyledContent>
+  );
 };
 
 export default PageContent;

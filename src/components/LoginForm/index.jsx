@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { userLoginThunk } from "../../store/modules/user/thunk";
 import { useDispatch } from "react-redux";
 import { Content, StyledForm } from "../FormComponents/styles";
-import { useHistory } from "react-router-dom";
 import Motion from "../Motion";
 
 import logo from "../../assets/logo.png";
@@ -27,15 +26,16 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
+    validationSchema: schema,
   });
 
   const handleForm = (data) => {
-    dispatch(userLoginThunk(data));
+    dispatch(userLoginThunk(data, setError));
   };
 
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <Motion>
@@ -77,7 +77,7 @@ const LoginForm = () => {
               <span className="labelSpan">Senha</span>
             </label>
           </div>
-          <p>{errors.password?.message}</p>
+          <p>{error && "Email ou senha invalidos"}</p>
           <button type="submit">Entrar</button>
         </StyledForm>
         <Link to="/cadastro">Cadastre-se</Link>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
 import { StyledHeader } from "./styles";
 import HamburguerMenu from "../HamburguerMenu";
@@ -23,12 +24,21 @@ const Header = ({ menuItems, paths }) => {
             <HamburguerMenu setClosed={setClosed} isMenuClosed={isMenuClosed} />
             <ul>
               {menuItems.map((value, index) => (
-                <li key={index} onClick={() => history.push({ paths })}>
+                <li key={index} onClick={() => history.push(paths[index])}>
                   {value}
                 </li>
               ))}
             </ul>
           </nav>
+          <button
+            onClick={() => {
+              localStorage.clear();
+              history.push("/");
+              document.location.reload(true);
+            }}
+          >
+            <FiLogOut />
+          </button>
         </div>
       </StyledHeader>
       <MobileMenu

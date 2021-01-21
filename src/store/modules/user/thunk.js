@@ -33,13 +33,14 @@ export const getAllPatientsThunk = () => (dispatch) => {
     .catch((error) => console.error(error));
 };
 
-export const userLoginThunk = (data) => (dispatch) => {
+export const userLoginThunk = (data, setError) => (dispatch) => {
   api
     .post("login", data)
     .then((res) => {
       localStorage.setItem("authToken", JSON.stringify(res.data.accessToken));
       const id = jwt_decode(res.data.accessToken).sub;
       const token = res.data.accessToken;
+      setError(false);
       api
         .get(`users/${id}`, {
           headers: {
@@ -47,12 +48,13 @@ export const userLoginThunk = (data) => (dispatch) => {
           },
         })
         .then((res) => {
-          localStorage.setItem("userInfo", JSON.stringify(res.data))
+          localStorage.setItem("userInfo", JSON.stringify(res.data));
           dispatch(getUser(res.data));
+          window.location.reload(true);
         })
         .catch((error) => console.error(error));
     })
-    .catch((error) => console.error(error));
+    .catch((error) => setError(true));
 };
 
 export const userRegisterThunk = (data) => {
