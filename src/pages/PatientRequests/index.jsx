@@ -2,7 +2,7 @@ import { api } from "../../services/api";
 import Slide from "react-reveal/Slide";
 import PageTitle from "../../components/PageTitle";
 import { StyledPatientsRequestContent, Content } from "./styles";
-import { Form, Input, Button, DatePicker, message } from "antd";
+import { Form, Input, Button, DatePicker} from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -48,7 +48,7 @@ const PatientRequest = () => {
   };
 
   return (
-    <StyledPatientRequests>
+    <StyledPatientsRequestContent>
       <PageTitle title={"Solicitações"} />
       <Slide bottom>
         <Content>
