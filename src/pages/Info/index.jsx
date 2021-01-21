@@ -8,7 +8,7 @@ import pessoas from "../../assets/pessoas.png";
 
 const Info = () => {
   return (
-    <>
+    <div>
       <StyledImageDiv>
         <img src={pessoas} alt="Pessoas" />
       </StyledImageDiv>
@@ -46,7 +46,7 @@ const Info = () => {
           />
         </CardsContent>
       </Slide>
-    </>
+    </div>
   );
 };
 
