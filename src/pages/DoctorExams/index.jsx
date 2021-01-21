@@ -1,117 +1,100 @@
 import axios from "axios";
 import "antd/dist/antd.css";
 import { useState, useEffect } from "react";
-import { Select } from "antd";
+import { Empty } from "antd";
 
-
-const { Option } = Select;
+import SelectPatients from "../../components/SelectPatients";
+import {
+  Container,
+  ContainerForm,
+  SectionData,
+  SectionDescription,
+  TitlePage,
+  NewSelect,
+  NewButton,
+} from "./styles";
 
 const DoctorExams = () => {
   const [patients, setPatient] = useState([]);
   const [history, setHistory] = useState("");
   const [exam, setExam] = useState(undefined);
-  const token = localStorage.getItem("authToken");
-
-  const selectPatient = (
-    <>
-      {patients.map((patient, index) => (
-        <Option key={index} value={patient.id}>
-          {patient.email}
-        </Option>
-      ))}
-    </>
-  );
-
-  const onChange = (value) => {
-    patients.map((patient) => {
-      if (patient.id === value) {
-        setHistory(patient);
-      }
-    });
-  };
 
   const handleDate = (evt) => {
-    console.log(history.exams[evt.target.id]);
     setExam(history.exams[evt.target.id]);
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("authToken");
+
     axios
-      .get("https://api-capstone-medik.herokuapp.com/users", {
+      .get("https://api-capstone-medik.herokuapp.com/users?type=patient", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        const arrayPatient = [];
-        res.data.map((objClient) => {
-          if (objClient.type === "patient") {
-            arrayPatient.push(objClient);
-          }
-        });
-        setPatient(arrayPatient);
+        setPatient(res.data);
       });
   }, []);
 
   return (
-    <div>
-      <div>Exames</div>
-      <section>
-        <Select
-          showSearch
-          style={{ width: 200 }}
-          placeholder="Selecione um paciente"
-          optionFilterProp="children"
-          onChange={onChange}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {!!patients.length && selectPatient}
-        </Select>
-      </section>
-      <section>
-        {!!history.exams ? (
-          history.exams.map((exam, index) => {
-            return (
+    <Container>
+      <TitlePage>
+        <h1>Exames</h1>
+        <hr />
+      </TitlePage>
+      <NewSelect>
+        <h2>Paciente:</h2>
+        <SelectPatients
+          setHistory={setHistory}
+          patients={patients}
+          setExam={setExam}
+        />
+      </NewSelect>
+      <ContainerForm>
+        <SectionData>
+          <h2>Data</h2>
+          {!!history.exams ? (
+            history.exams.map((exam, index) => {
+              return (
+                <div>
+                  <NewButton key={index} onClick={handleDate} id={index}>
+                    {exam.data
+                      .replace(/[A-Z].*Z/, "")
+                      .split("-")
+                      .reverse()
+                      .join("-")}
+                  </NewButton>
+                </div>
+              );
+            })
+          ) : (
+            <Empty description="Não possui histórico" />
+          )}
+        </SectionData>
+        <SectionDescription>
+          <div>
+            <h2>Descrição</h2>
+            {exam ? (
               <div>
-                <button
-                  style={{ background: "inherit", border: "none", margin: 2 }}
-                  key={index}
-                  onClick={handleDate}
-                  id={index}
-                >
+                <h3>Procedimento: {exam.type}</h3>
+                <h4>
+                  Data:
                   {exam.data
                     .replace(/[A-Z].*Z/, "")
                     .split("-")
                     .reverse()
                     .join("-")}
-                </button>
+                </h4>
+                <div className="description-exams">
+                  <p>Descrição: {exam.description}</p>
+                </div>
               </div>
-            );
-          })
-        ) : (
-          <p>Sem exames</p>
-        )}
-      </section>
-      <section>
-        <div>
-          {exam ? (
-            <div>
-              <h2>{exam.type}</h2>
-              <h3>
-                {exam.data
-                  .replace(/[A-Z].*Z/, "")
-                  .split("-")
-                  .reverse()
-                  .join("-")}
-              </h3>
-              <p>{exam.description}</p>
-            </div>
-          ) : (
-            <p>Sem dados</p>
-          )}
-        </div>
-      </section>
-    </div>
+            ) : (
+              <Empty description="Não possui histórico" />
+            )}
+          </div>
+        </SectionDescription>
+      </ContainerForm>
+    </Container>
   );
 };
 
