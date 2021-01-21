@@ -73,6 +73,7 @@ export const NewButton = styled.button`
 
 export const SectionDescription = styled.section`
   width: 75%;
+  margin-left: 20px;
   h2 {
     text-align: center;
     padding: 10px;

@@ -23,15 +23,19 @@ export const ContainerForm = styled.div`
   background: ${colors.blue1};
   height: 50vh;
   margin-bottom: 20px;
+
   @media (max-width: 760px) {
     height: auto;
+    flex-direction: column;
   }
 `;
 
 export const SectionData = styled.section`
   width: 20%;
+  min-width: 300px;
   text-align: center;
   border-right: 1px solid rgb(193, 206, 255);
+
   h2 {
     text-align: center;
     padding: 10px;
@@ -70,6 +74,7 @@ export const NewButton = styled.button`
 
 export const SectionDescription = styled.section`
   width: 75%;
+  margin-left: 20px;
   h2 {
     text-align: center;
     padding: 10px;
@@ -90,27 +95,17 @@ export const SectionDescription = styled.section`
     font-weight: bold;
   }
   div.description-exams {
-    height: 45vh;
+    min-height: 30vh;
     overflow-y: "auto";
   }
   div p {
     text-indent: 20px;
     margin: 20px 10px;
   }
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
     border-top: 1px solid rgb(193, 206, 255);
     width: 100%;
-    margin: 25px;
-  }
-`;
-
-export const NewSelect = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  h2 {
-    margin: 0 10px 0 0;
-    color: ${colors.gray2};
-    font-variant: small-caps;
+    margin: 10px 0;
+    padding: 20px;
   }
 `;
