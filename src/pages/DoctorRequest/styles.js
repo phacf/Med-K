@@ -43,6 +43,10 @@ export const SectionForm = styled.section`
     width: 100%;
     padding: 5px;
   }
+   label.ant-form-item-required {
+    color: ${colors.gray2};
+  }
+
   @media (max-width: 780px) {
     width: 320px;
     border-top: ${(props) =>
@@ -50,14 +54,6 @@ export const SectionForm = styled.section`
   }
 `;
 
-  label.ant-form-item-required {
-    color: ${colors.gray2};
-  }
-
-  @media (max-width: 780px) {
-    width: 320px;
-  }
-`;
 
 export const NewSelect = styled.section`
   display: flex;
