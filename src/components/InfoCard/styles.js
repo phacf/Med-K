@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../styles/colors";
 
 export const StyledCard = styled.div`
-  width: 90%;
+  width: 100%;
   padding: 10px;
   margin: 0 auto;
   margin-top: 20px;
@@ -19,9 +19,5 @@ export const StyledCard = styled.div`
   p {
     color: ${colors.gray2};
     font-size: 1rem;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 95%;
   }
 `;

@@ -1,18 +1,30 @@
 import styled from "styled-components";
 
+import { colors } from "../../styles/colors";
+
 export const Container = styled.div`
-  width: 80%;
-  margin: 10px auto;
+  width: 90%;
+  margin: 20px auto;
+  color: ${colors.gray2};
+
+  label.ant-form-item-required {
+    color: ${colors.gray2} !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const ContainerForm = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background: rgba(234, 234, 258, 0.3);
+  background: ${colors.blue1};
   height: 50vh;
   margin-bottom: 20px;
 `;
+
 export const SectionData = styled.section`
   width: 20%;
   text-align: center;
@@ -20,6 +32,7 @@ export const SectionData = styled.section`
   h2 {
     text-align: center;
     padding: 10px;
+    color: ${colors.gray2};
     font-variant: small-caps;
     text-decoration: underline;
   }
@@ -53,6 +66,7 @@ export const SectionDescription = styled.section`
   h2 {
     text-align: center;
     padding: 10px;
+    color: ${colors.gray2};
     font-variant: small-caps;
     text-decoration: underline;
   }
@@ -78,25 +92,13 @@ export const SectionDescription = styled.section`
   }
 `;
 
-export const TitlePage = styled.div`
-  margin: 5px 0 20px;
-  h1 {
-    font-size: 36px;
-    font-variant: small-caps;
-  }
-  hr {
-    margin-top: 0;
-    padding-top: 0;
-    border-color: rgb(193, 206, 255);
-  }
-`;
-
 export const NewSelect = styled.section`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
   h2 {
     margin: 0 10px 0 0;
+    color: ${colors.gray2};
     font-variant: small-caps;
   }
 `;

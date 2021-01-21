@@ -2,6 +2,7 @@ import Slide from "react-reveal/Slide";
 
 import { StyledDiv, StyledVaccinesContent } from "./styles";
 
+import PageTitle from "../../components/PageTitle";
 import Card from "../../components/VaccinesCard";
 
 export default function PageVaccines() {

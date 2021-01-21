@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 import FormConsult from "../../components/FormConsult";
 import SetCardHistory from "../../components/SetCardHistory";
 import SelectPatients from "../../components/SelectPatients";
+import PageTitle from "../../components/PageTitle";
 
 import {
   Container,
@@ -33,10 +34,7 @@ const DoctorRequest = () => {
 
   return (
     <Container>
-      <TitlePage>
-        <h1>Solicitações</h1>
-        <hr />
-      </TitlePage>
+      <PageTitle title={"Solicitações"} />
       <NewSelect>
         <h2>Paciente:</h2>
         <SelectPatients setHistory={setHistory} patients={patients} />
