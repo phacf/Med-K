@@ -1,50 +1,91 @@
-import { Container, Section, DescriptionDate, Date, Page } from "./styles";
-import { getPatientExamThunk } from "../../store/modules/user/thunk";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import "antd/dist/antd.css";
+import { Empty } from "antd";
+
+import PageTitle from "../../components/PageTitle";
+
+import {
+  Container,
+  ContainerForm,
+  SectionData,
+  SectionDescription,
+  NewButton,
+} from "./styles";
+
 import { useState, useEffect } from "react";
+
 const PatientExam = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const [examDetails, setExamDetails] = useState({});
-  const user = JSON.parse(localStorage.getItem("userInfo")).exams;
-  const handleClick = (exam) => {
-    setExamDetails(exam);
+  const [user, setUser] = useState({});
+  const [exam, setExam] = useState(undefined);
+
+  const handleDate = (evt) => {
+    setExam(user.exams[evt.target.id]);
   };
 
-
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    setUser(user);
+  }, []);
 
   return (
-    <Page>
-      <Container>
-        <h1 className="container_title">Suas Consultas</h1>
-        <Section>
-          <Date>
-            {user && user.map((consult, index) => (
-              <a
-                //className="date_button"
-                key={index}
-                onClick={() => handleClick(consult, index)}
-              >
-                {consult.date}
-              </a>
-            ))}
-          </Date>
-          <DescriptionDate>
-           <p className="descriptiondate_date">{examDetails.data}</p>
-            <p className="descriptiondate_type">{examDetails.type}</p>
-            <p className="descriptiondate_description">
-              {examDetails.especification ? (
-                examDetails.especification
-              ) : (
-                <p>Sem descrição</p>
-              )}
-            </p>
-          </DescriptionDate>
-        </Section>
-        <button class="container_button">Voltar</button>
-      </Container>
-    </Page>
+    <Container>
+      <PageTitle title={"Exames"} />
+      <ContainerForm>
+        <SectionData>
+          <h2>Data</h2>
+          {!!user.exams ? (
+            user.exams.map((exam, index) => {
+              return (
+                <div>
+                  <NewButton key={index} onClick={handleDate} id={index}>
+                    {exam.data
+                      ? exam.data
+                          .replace(/[A-Z].*Z/, "")
+                          .split("-")
+                          .reverse()
+                          .join("-")
+                      : exam.protocol}
+                  </NewButton>
+                </div>
+              );
+            })
+          ) : (
+            <Empty description="Não possui histórico" />
+          )}
+        </SectionData>
+        <SectionDescription>
+          <div>
+            <h2>Descrição</h2>
+            {exam ? (
+              <div>
+                <h3>Procedimento: {exam.type}</h3>
+                <h4>
+                  <span>
+                    {console.log(exam)}
+                    {exam.data &&
+                      `Data:
+                  ${exam.data
+                    .replace(/[A-Z].*Z/, "")
+                    .split("-")
+                    .reverse()
+                    .join("-")}`}
+                  </span>
+                  <span>
+                    {exam.protocol &&
+                      `Nº protocolo:
+                  ${exam.protocol}`}
+                  </span>
+                </h4>
+                <div className="description-exams">
+                  <p>Descrição: {exam.description}</p>
+                </div>
+              </div>
+            ) : (
+              <Empty description="Não possui histórico" />
+            )}
+          </div>
+        </SectionDescription>
+      </ContainerForm>
+    </Container>
   );
 };
 
