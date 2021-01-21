@@ -1,65 +1,117 @@
-import { useDispatch } from "react-redux";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { api } from "../../services/api";
+import Slide from "react-reveal/Slide";
+import PageTitle from "../../components/PageTitle";
+import { StyledPatientsRequestContent, Content } from "./styles";
+import { Form, Input, Button, DatePicker} from "antd";
 
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 14,
+    },
+    sm: {
+      span: 8,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 14,
+    },
+    sm: {
+      span: 10,
+    },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
+};
 
+const PatientRequest = () => {
+  const user = JSON.parse(localStorage.getItem("userInfo"));
 
-export const PatientRequest = () => {
+  const [form] = Form.useForm();
+  const tryLogin = (data) => {
+    data.data = data.data._d.toLocaleString("pt-br");
+    console.log(data);
+    api.patch(`user/${user.id}`, {
+      ExamsRequests: data,
+    });
+  };
 
-    
+  return (
+    <StyledPatientsRequestContent>
+      <PageTitle title={"Solicitações"} />
+      <Slide bottom>
+        <Content>
+          <h2>Solicitação de Exame</h2>
+          <Form
+            style={{ paddingTop: 10 }}
+            {...formItemLayout}
+            form={form}
+            name="register"
+            onFinish={tryLogin}
+            scrollToFirstError
+          >
+            <Form.Item
+              name="type"
+              label="Exame"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira o nome do exame.",
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
 
-    const schema = yup.object().shape({
-        text: yup.string(),
-       });
-      
-       const {  register, handleSubmit } = useForm(
-         //resolver: yupResolver(schema),
-      );
-      const dispatch = useDispatch();
-      
-      const onSubmit = (data) =>{
-        dispatch(""(data.text))
+            <Form.Item
+              name="data"
+              label="Data"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira a data do exame.",
+                },
+              ]}
+            >
+              <DatePicker showTime />
+            </Form.Item>
 
-      }
+            <Form.Item
+              name="description"
+              label="Situação"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor, insira resultado do exame.",
+                  whitespace: true,
+                },
+              ]}
+            >
+              <Input.TextArea />
+            </Form.Item>
 
-      const divButton = {
-        height: '6vh',
-        width: '23vw',
-        boxShadow: '4px 4px 16px 8px rgba(0, 0, 0, 0.25)',
-        margin: '20px',
-        borderRadius: '10px'
-    }
+            <Form.Item {...tailFormItemLayout}>
+              <Button type="primary" htmlType="submit">
+                Solicitar
+              </Button>
+            </Form.Item>
+          </Form>
+        </Content>
+      </Slide>
+    </StyledPatientsRequestContent>
+  );
+};
 
-    const divStyle = {
-        width: '90vw',
-        backgroundColor: 'white',
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        color: 'black',
-        borderRadius: '10px',
-        boxShadow: '4px 4px 16px 8px rgba(0, 0, 0, 0.25)',
-    }
-
-return (
-    <div>
-        <form style={divStyle} onSubmit={handleSubmit(onSubmit)} >
-
-<div><h1>Solicitações</h1></div>
-<button style={divButton} type="submit">Solicitar</button>
-    <label for="exam">Escolha</label>
-    <select type="text"  name="tipo"  ref={register({ required: true, maxLength: 30 })}>
-         <option value="">Escolha</option>
-         <option value="Exame">Exame</option>
-         <option value="Consulta">Consulta</option>
-    </select>  
-
-<textarea type="text"  name="text" placeholder="Texto" rows="30" cols="100" ref={register({ required: true})}> </textarea>
-
-</ form>
-   <button style={divButton} type="submit">Voltar</button>
-    </div>
-    )
-}
+export default PatientRequest;

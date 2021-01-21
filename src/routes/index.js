@@ -1,77 +1,95 @@
 import { Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 
 import Header from "../components/Header";
 import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import PatientConsult from "../pages/PatientConsult";
-import PatientExam from "../pages/PatientExam";
 import DoctorExams from "../pages/DoctorExams";
 import DoctorRequest from "../pages/DoctorRequest";
 import Welcome from "../pages/Welcome";
+import PatientConsult from "../pages/PatientConsult";
+import PatientExam from "../pages/PatientExam";
+import PatientRequests from "../pages/PatientRequests";
+import PatientVaccines from "../pages/PatientVaccines";
+import Info from "../pages/Info";
 
 const Routes = () => {
-  // const [isAuthenticated, setAuthentication] = useState(false);
-  // const history = useHistory();
-  // const location = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const token = window.localStorage.getItem("authToken");
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  // useEffect(() => {
-  //   const token = window.localStorage.getItem("authToken");
-  //   if (token) {
-  //     setAuthentication(true);
-  //     if (location.pathname === "/") {
-  //       history.push("/");
-  //     }
-  //   }
-  // }, [location.pathname, history]);
+  useEffect(() => {
+    if (token) {
+      setIsAuthenticated(token);
+    }
+  }, [token]);
 
-  // if (isAuthenticated === false) {
-  //   return (
-  //     <>
-  //       <AnimatePresence>
-  //         <Switch>
-  //           <Route exact path="/cadastro">
-  //             <Register />
-  //           </Route>
-  //           <Route path="/">
-  //             <Login />
-  //           </Route>
-  //         </Switch>
-  //       </AnimatePresence>
-  //     </>
-  //   );
-  // }
+  if (!isAuthenticated) {
+    return (
+      <>
+        <AnimatePresence>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route path="/cadastro" component={Register} />
+          </Switch>
+        </AnimatePresence>
+      </>
+    );
+  }
 
-  return (
-    <>
-      <AnimatePresence>
-        <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
+  if (userInfo.type === "medic") {
+    return (
+      <>
+        <Header
+          menuItems={["Exames", "Solicitações"]}
+          paths={["/exames", "/solicitacoes"]}
+        />
         <PageContent>
           <Switch>
-            <Route exact path="/medico/solicitacoes">
-              <DoctorRequest />
-            </Route>
-            <Route exact path="/medico/exames">
-              <DoctorExams />
-            </Route>
-            <Route exact path="/paciente/consultas">
-              <PatientConsult />
-            </Route>
-            <Route exact path="/paciente/exames">
-              <PatientExam />
-            </Route>
-            <Route path="/">
-              <Welcome />
-            </Route>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/exames" component={DoctorExams} />
+            <Route path="/solicitacoes" component={DoctorRequest} />
           </Switch>
         </PageContent>
-      </AnimatePresence>
-    </>
-  );
+      </>
+    );
+  }
+
+  if (userInfo.type === "patient") {
+    return (
+      <>
+        <Header
+          menuItems={[
+            "Exames",
+            "Consultas",
+            "Solicitações",
+            "Vacinas",
+            "Informações",
+          ]}
+          paths={[
+            "/exames",
+            "/consultas",
+            "/solicitacoes",
+            "/vacinas",
+            "/informacoes",
+          ]}
+        />
+        <PageContent>
+          <Switch>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/exames" component={PatientExam} />
+            <Route exact path="/consultas" component={PatientConsult} />
+            <Route path="/solicitacoes" component={PatientRequests} />
+            <Route path="/vacinas" component={PatientVaccines} />
+            <Route path="/informacoes" component={Info} />
+          </Switch>
+        </PageContent>
+      </>
+    );
+  }
 };
 
 export default Routes;

@@ -10,7 +10,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   background-color: ${colors.blue1};
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.3);
 
@@ -20,7 +20,8 @@ export const StyledHeader = styled.header`
 
   ul,
   li,
-  a {
+  a,
+  button {
     display: none;
   }
 
@@ -52,7 +53,7 @@ export const StyledHeader = styled.header`
     }
 
     ul {
-      width: 60%;
+      width: 100%;
       height: 100%;
       display: flex;
       justify-content: space-evenly;
@@ -71,9 +72,22 @@ export const StyledHeader = styled.header`
       cursor: pointer;
     }
 
-    li:hover {
+    li:hover,
+    button:hover {
       transition: 0.3s;
       color: ${colors.blue4};
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: ${colors.gray2};
+      border: none;
+      outline: none;
+      background-color: rgba(0, 0, 0, 0);
+      cursor: pointer;
     }
   }
 `;

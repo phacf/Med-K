@@ -9,21 +9,21 @@ export const getPatientExamThunk = (cpf) => (dispatch) => {
     .then((res) => dispatch(getPatient(res.data)))
     .catch((error) => console.error(error));
 };
-export const addPatientConsultThunk = (cpf) => (dispatch) => {
+export const addPatientConsultThunk = (cpf, data) => (dispatch) => {
   api
-    .patch(`consultations?q=${cpf}`)
+    .patch(`consultations?q=${cpf}`, data)
 
     .catch((error) => console.error(error));
 };
-export const addPatientExamsThunk = (cpf) => (dispatch) => {
+export const addPatientExamsThunk = (cpf, data) => (dispatch) => {
   api
-    .patch(`exams?q=${cpf}`)
+    .patch(`exams?q=${cpf}`, data)
 
     .catch((error) => console.error(error));
 };
-export const getPatientVaccineThunk = (cpf) => (dispatch) => {
+export const getPatientVaccineThunk = (cpf, data) => (dispatch) => {
   api
-    .patch(`vaccines?q=${cpf}`)
+    .patch(`vaccines?q=${cpf}`, data)
 
     .catch((error) => console.error(error));
 };
@@ -39,34 +39,43 @@ export const getAllPatientsThunk = (token) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-const selectRoute = (id, token, setUserType, dispatch) => {
+export const userLoginThunk = (data, setError) => (dispatch) => {
   api
-    .get(`users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .post("login", data)
     .then((res) => {
-      const userType = res.data.type;
-      setUserType(userType);
-      console.log(res.data);
-      dispatch(getPatientInfo(res.data));
+      localStorage.setItem("authToken", res.data.accessToken);
+      const id = jwt_decode(res.data.accessToken).sub;
+      const token = res.data.accessToken;
+      setError(false);
+      api
+        .get(`users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          localStorage.setItem("userInfo", JSON.stringify(res.data));
+          dispatch(getUser(res.data));
+          window.location.reload(true);
+        })
+        .catch((error) => console.error(error));
     })
-    .catch((err) => console.log(err));
+    .catch((error) => setError(true));
 };
 
-export const getPatientInfoThunk = (data, setUserType, setUserId) => (
-  dispatch,
-  _
-) => {
+export const userRegisterThunk = (data) => {
+  api.post("users", data).catch((error) => console.error(error));
+};
+
+// Confirmar Agendamento
+export const getPatientConfirm = (id, changed) => (dispatch) => {
   api
-    .post("login", { ...data })
+    .patch(`users/${id}`, {
+      consultations: changed,
+    })
     .then((res) => {
-      const token = res.data.accessToken;
-      const id = jwt_decode(token).sub;
-      localStorage.setItem("authToken", JSON.stringify(token));
-      selectRoute(id, token, setUserType, dispatch);
-      setUserId(id);
+      console.log(res.data);
+      dispatch(getUser(res.data));
     })
     .catch((err) => console.log(err));
 };

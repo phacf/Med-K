@@ -1,60 +1,111 @@
 import styled from "styled-components";
 
+import { colors } from "../../styles/colors";
+
 export const Container = styled.div`
-  width: 80vw;
-  height: 80vh;
+  width: 90%;
+  margin: 20px auto;
+  color: ${colors.gray2};
 
-  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
-
-  h1 {
-    margin: 3% 0 5% 0;
+  label.ant-form-item-required {
+    color: ${colors.gray2} !important;
   }
 
-  .container_button {
-    cursor: pointer;
-    margin-top: 5%;
-    background-color: transparent;
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
+`;
+
+export const ContainerForm = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: ${colors.blue1};
+  height: 50vh;
+  margin-bottom: 20px;
+
+  @media (max-width: 760px) {
+    height: auto;
+    flex-direction: column;
+  }
+`;
+
+export const SectionData = styled.section`
+  width: 20%;
+  min-width: 300px;
+  text-align: center;
+  border-right: 1px solid rgb(193, 206, 255);
+
+  h2 {
+    text-align: center;
+    padding: 10px;
+    color: ${colors.gray2};
+    font-variant: small-caps;
+    text-decoration: underline;
+  }
+  div.scroll-history {
+    height: 45vh;
+    overflow-y: ${(props) => (props.scroll ? "auto" : "hidden")};
+  }
+  @media (max-width: 760px) {
+    width: 100%;
+    border: none;
+  }
+`;
+
+export const NewButton = styled.button`
+  background: none;
+  border: none;
+  margin: 2px;
+
+  &:focus {
     border: none;
     outline: none;
-    padding: 10px;
-    width: 150px;
-    box-shadow: 3px 3px 4px #b0b0b0, -1px 1px 4px #b0b0b0;
+    background: rgba(214, 214, 258, 0.8);
   }
-`;
-
-export const Section = styled.div`
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: space-around;
-`;
-
-export const Date = styled.section`
-  border: 1px solid black;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-
-  button {
-    background-color: transparent;
-    margin: 10%;
-    font-size: 1rem;
+  &:active {
     border: none;
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+    outline: none;
+  }
+  &:hover {
+    background-color: rgb(214, 214, 258);
   }
 `;
 
-export const DescriptionDate = styled.div`
-  text-align: justify;
-  border: 1px solid black;
-  width: 70%;
-  word-wrap: break-word;
-  overflow: auto;
-
-  p {
-    margin: 2% 0 0 1.2%;
+export const SectionDescription = styled.section`
+  width: 75%;
+  margin-left: 20px;
+  h2 {
+    text-align: center;
+    padding: 10px;
+    color: ${colors.gray2};
+    font-variant: small-caps;
+    text-decoration: underline;
+  }
+  div.scroll-history {
+    height: 45vh;
+    overflow-y: ${(props) => (props.scroll ? "auto" : "hidden")};
+  }
+  div h3 {
+    font-size: 20px;
+    font-variant: small-caps;
+  }
+  div h4 {
+    font-variant: all-small-caps;
+    font-weight: bold;
+  }
+  div.description-exams {
+    min-height: 30vh;
+    overflow-y: "auto";
+  }
+  div p {
+    text-indent: 20px;
+    margin: 20px 10px;
+  }
+  @media (max-width: 768px) {
+    border-top: 1px solid rgb(193, 206, 255);
+    width: 100%;
+    margin: 10px 0;
+    padding: 20px;
   }
 `;
