@@ -9,46 +9,37 @@ import { useState, useEffect } from "react";
 const PatientConsult = () => {
   const dispatch = useDispatch();
   const [consultDetails, setConsultDetails] = useState({});
-  const user = useSelector((state) => state.user.userInfo);
+  const user = JSON.parse(localStorage.getItem("userInfo")).consultations;
 
   const handleClick = (consult) => {
     setConsultDetails(consult);
   };
 
-  // const confirmConsult = () => {
-  //   const consult = { ...consultDetails, isConfirm: true };
-  //   const newConsults = user.consultations.map(({ type }, index, arr) => {
-  //     if (type === consult.type) {
-  //       arr.splice(index, 1);
-  //       arr.push(consult);
-  //     }
-  //     return arr;
-  //   });
-  //   dispatch(getPatientConfirm(...newConsults));
-  // };
-
+  
+ 
+  console.log(user)
   return (
     <Page>
       <Container>
         <h1 className="container_title">Suas Consultas</h1>
         <Section>
           <Date>
-            {user.consultations?.map((consult, index) => (
-              <button
-                className="date_button"
+            {user && user.map((consult, index) => (
+              <a
+                //className="date_button"
                 key={index}
                 onClick={() => handleClick(consult, index)}
               >
-                {consult.data}
-              </button>
+                {consult.date}
+              </a>
             ))}
           </Date>
           <DescriptionDate>
             <p className="descriptiondate_date">{consultDetails.data}</p>
             <p className="descriptiondate_type">{consultDetails.type}</p>
             <p className="descriptiondate_description">
-              {consultDetails.description ? (
-                consultDetails.description
+              {consultDetails.especification ? (
+                consultDetails.especification
               ) : (
                 <p>Sem descrição</p>
               )}
