@@ -15,24 +15,23 @@ const PatientConsult = () => {
     setConsultDetails(consult);
   };
 
-  
- 
-  console.log(user)
+  console.log(user);
   return (
     <Page>
       <Container>
         <h1 className="container_title">Suas Consultas</h1>
         <Section>
           <Date>
-            {user && user.map((consult, index) => (
-              <a
-                //className="date_button"
-                key={index}
-                onClick={() => handleClick(consult, index)}
-              >
-                {consult.date}
-              </a>
-            ))}
+            {user &&
+              user.map((consult, index) => (
+                <a
+                  //className="date_button"
+                  key={index}
+                  onClick={() => handleClick(consult, index)}
+                >
+                  {consult.date}
+                </a>
+              ))}
           </Date>
           <DescriptionDate>
             <p className="descriptiondate_date">{consultDetails.data}</p>
@@ -46,7 +45,6 @@ const PatientConsult = () => {
             </p>
           </DescriptionDate>
         </Section>
-        <button className="container_button to_back">Voltar</button>
       </Container>
     </Page>
   );

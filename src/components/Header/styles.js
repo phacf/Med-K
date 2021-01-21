@@ -10,7 +10,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   background-color: ${colors.blue1};
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.3);
 

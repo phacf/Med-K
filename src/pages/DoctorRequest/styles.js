@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
+import { colors } from "../../styles/colors";
+
 export const Container = styled.div`
-  width: 80%;
-  margin: 10px auto;
+  width: 90%;
+  margin: 20px auto;
+  color: ${colors.gray2};
+
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const ContainerForm = styled.div`
@@ -10,13 +17,15 @@ export const ContainerForm = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  background: rgba(234, 234, 258, 0.3);
+  background: ${colors.blue1};
 `;
 export const SectionForm = styled.section`
   width: 50%;
   h2 {
     text-align: center;
     padding: 10px;
+    margin-left: 15%;
+    color: ${colors.gray2};
     font-variant: small-caps;
     text-decoration: underline;
   }
@@ -41,16 +50,12 @@ export const SectionForm = styled.section`
   }
 `;
 
-export const TitlePage = styled.div`
-  margin: 5px 0 20px;
-  h1 {
-    font-size: 36px;
-    font-variant: small-caps;
+  label.ant-form-item-required {
+    color: ${colors.gray2};
   }
-  hr {
-    margin-top: 0;
-    padding-top: 0;
-    border-color: rgb(193, 206, 255);
+
+  @media (max-width: 780px) {
+    width: 320px;
   }
 `;
 
@@ -60,6 +65,7 @@ export const NewSelect = styled.section`
   margin-bottom: 20px;
   h2 {
     margin: 0 10px 0 0;
+    color: ${colors.gray2};
     font-variant: small-caps;
   }
 `;

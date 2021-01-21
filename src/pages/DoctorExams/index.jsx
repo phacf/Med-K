@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Empty } from "antd";
 
 import SelectPatients from "../../components/SelectPatients";
+import PageTitle from "../../components/PageTitle";
 import {
   Container,
   ContainerForm,
@@ -37,10 +38,7 @@ const DoctorExams = () => {
 
   return (
     <Container>
-      <TitlePage>
-        <h1>Exames</h1>
-        <hr />
-      </TitlePage>
+      <PageTitle title={"Exames"} />
       <NewSelect>
         <h2>Paciente:</h2>
         <SelectPatients

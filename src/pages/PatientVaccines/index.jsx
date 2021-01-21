@@ -1,13 +1,14 @@
 import Slide from "react-reveal/Slide";
 
-import { StyledVaccinesContent } from "./styles";
+import { StyledDiv, StyledVaccinesContent } from "./styles";
 
+import PageTitle from "../../components/PageTitle";
 import Card from "../../components/VaccinesCard";
 
 export default function PageVaccines() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   return (
-    <div style={{ width: "100%" }}>
+    <StyledDiv vaccines={userInfo.vaccines}>
       <Slide bottom>
         <StyledVaccinesContent>
           {userInfo.vaccines ? (
@@ -25,6 +26,6 @@ export default function PageVaccines() {
           )}
         </StyledVaccinesContent>
       </Slide>
-    </div>
+    </StyledDiv>
   );
 }
