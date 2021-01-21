@@ -37,7 +37,7 @@ export const userLoginThunk = (data, setError) => (dispatch) => {
   api
     .post("login", data)
     .then((res) => {
-      localStorage.setItem("authToken", JSON.stringify(res.data.accessToken));
+      localStorage.setItem("authToken", res.data.accessToken);
       const id = jwt_decode(res.data.accessToken).sub;
       const token = res.data.accessToken;
       setError(false);
