@@ -7,7 +7,7 @@ const SelectPatients = ({ setHistory, patients, setExam }) => {
     <>
       {patients.map((patient, index) => (
         <Option key={index} value={patient.id}>
-          {patient.name || patient.email}
+          {patient.email}
         </Option>
       ))}
     </>
@@ -27,7 +27,7 @@ const SelectPatients = ({ setHistory, patients, setExam }) => {
   return (
     <Select
       showSearch
-      style={{ width: 300 }}
+      style={{ width: 200 }}
       placeholder="Selecione um paciente"
       optionFilterProp="children"
       onChange={onChange}

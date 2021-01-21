@@ -4,15 +4,11 @@ import { useState, useEffect } from "react";
 import { Empty } from "antd";
 
 import SelectPatients from "../../components/SelectPatients";
-import PageTitle from "../../components/PageTitle";
 import {
   Container,
   ContainerForm,
   SectionData,
   SectionDescription,
-  TitlePage,
-  NewSelect,
-  NewButton,
 } from "./styles";
 
 const DoctorExams = () => {
@@ -38,15 +34,17 @@ const DoctorExams = () => {
 
   return (
     <Container>
-      <PageTitle title={"Exames"} />
-      <NewSelect>
-        <h2>Paciente:</h2>
+      <div>
+        <h1>Exames</h1>
+      </div>
+      <section>
+        <h2>Selecionar paciente:</h2>
         <SelectPatients
           setHistory={setHistory}
           patients={patients}
           setExam={setExam}
         />
-      </NewSelect>
+      </section>
       <ContainerForm>
         <SectionData>
           <h2>Data</h2>
@@ -54,15 +52,18 @@ const DoctorExams = () => {
             history.exams.map((exam, index) => {
               return (
                 <div>
-                  <NewButton key={index} onClick={handleDate} id={index}>
+                  <button
+                    style={{ background: "inherit", border: "none", margin: 2 }}
+                    key={index}
+                    onClick={handleDate}
+                    id={index}
+                  >
                     {exam.data
-                      ? exam.data
-                          .replace(/[A-Z].*Z/, "")
-                          .split("-")
-                          .reverse()
-                          .join("-")
-                      : exam.protocol}
-                  </NewButton>
+                      .replace(/[A-Z].*Z/, "")
+                      .split("-")
+                      .reverse()
+                      .join("-")}
+                  </button>
                 </div>
               );
             })
@@ -77,25 +78,14 @@ const DoctorExams = () => {
               <div>
                 <h3>Procedimento: {exam.type}</h3>
                 <h4>
-                  <span>
-                    {console.log(exam)}
-                    {exam.data &&
-                      `Data:
-                  ${exam.data
+                  Data:
+                  {exam.data
                     .replace(/[A-Z].*Z/, "")
                     .split("-")
                     .reverse()
-                    .join("-")}`}
-                  </span>
-                  <span>
-                    {exam.protocol &&
-                      `Nº protocolo:
-                  ${exam.protocol}`}
-                  </span>
+                    .join("-")}
                 </h4>
-                <div className="description-exams">
-                  <p>Descrição: {exam.description}</p>
-                </div>
+                <p>Descrição: {exam.description}</p>
               </div>
             ) : (
               <Empty description="Não possui histórico" />
