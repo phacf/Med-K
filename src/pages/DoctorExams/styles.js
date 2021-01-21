@@ -1,31 +1,54 @@
 import styled from "styled-components";
 
+import { colors } from "../../styles/colors";
+
 export const Container = styled.div`
-  width: 80%;
-  margin: 10px auto;
+  width: 90%;
+  margin: 20px auto;
+  color: ${colors.gray2};
+
+  label.ant-form-item-required {
+    color: ${colors.gray2} !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const ContainerForm = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background: rgba(234, 234, 258, 0.3);
+  background: ${colors.blue1};
   height: 50vh;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-direction: column;
+  }
 `;
+
 export const SectionData = styled.section`
   width: 20%;
+  min-width: 300px;
   text-align: center;
   border-right: 1px solid rgb(193, 206, 255);
   h2 {
     text-align: center;
     padding: 10px;
+    color: ${colors.gray2};
     font-variant: small-caps;
     text-decoration: underline;
   }
   div.scroll-history {
     height: 45vh;
     overflow-y: ${(props) => (props.scroll ? "auto" : "hidden")};
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    border: none;
   }
 `;
 
@@ -50,9 +73,11 @@ export const NewButton = styled.button`
 
 export const SectionDescription = styled.section`
   width: 75%;
+  margin-left: 20px;
   h2 {
     text-align: center;
     padding: 10px;
+    color: ${colors.gray2};
     font-variant: small-caps;
     text-decoration: underline;
   }
@@ -69,25 +94,18 @@ export const SectionDescription = styled.section`
     font-weight: bold;
   }
   div.description-exams {
-    height: 45vh;
+    min-height: 30vh;
     overflow-y: "auto";
   }
   div p {
     text-indent: 20px;
     margin: 20px 10px;
   }
-`;
-
-export const TitlePage = styled.div`
-  margin: 5px 0 20px;
-  h1 {
-    font-size: 36px;
-    font-variant: small-caps;
-  }
-  hr {
-    margin-top: 0;
-    padding-top: 0;
-    border-color: rgb(193, 206, 255);
+  @media (max-width: 768px) {
+    border-top: 1px solid rgb(193, 206, 255);
+    width: 100%;
+    margin: 10px 0;
+    padding: 20px;
   }
 `;
 
@@ -97,6 +115,7 @@ export const NewSelect = styled.section`
   margin-bottom: 20px;
   h2 {
     margin: 0 10px 0 0;
+    color: ${colors.gray2};
     font-variant: small-caps;
   }
 `;

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Empty } from "antd";
 
 import SelectPatients from "../../components/SelectPatients";
+import PageTitle from "../../components/PageTitle";
 import {
   Container,
   ContainerForm,
@@ -37,10 +38,7 @@ const DoctorExams = () => {
 
   return (
     <Container>
-      <TitlePage>
-        <h1>Exames</h1>
-        <hr />
-      </TitlePage>
+      <PageTitle title={"Exames"} />
       <NewSelect>
         <h2>Paciente:</h2>
         <SelectPatients
@@ -58,10 +56,12 @@ const DoctorExams = () => {
                 <div>
                   <NewButton key={index} onClick={handleDate} id={index}>
                     {exam.data
-                      .replace(/[A-Z].*Z/, "")
-                      .split("-")
-                      .reverse()
-                      .join("-")}
+                      ? exam.data
+                          .replace(/[A-Z].*Z/, "")
+                          .split("-")
+                          .reverse()
+                          .join("-")
+                      : exam.protocol}
                   </NewButton>
                 </div>
               );
@@ -77,12 +77,21 @@ const DoctorExams = () => {
               <div>
                 <h3>Procedimento: {exam.type}</h3>
                 <h4>
-                  Data:
-                  {exam.data
+                  <span>
+                    {console.log(exam)}
+                    {exam.data &&
+                      `Data:
+                  ${exam.data
                     .replace(/[A-Z].*Z/, "")
                     .split("-")
                     .reverse()
-                    .join("-")}
+                    .join("-")}`}
+                  </span>
+                  <span>
+                    {exam.protocol &&
+                      `Nº protocolo:
+                  ${exam.protocol}`}
+                  </span>
                 </h4>
                 <div className="description-exams">
                   <p>Descrição: {exam.description}</p>

@@ -24,6 +24,15 @@ export const StyledImageDiv = styled.div`
   }
 `;
 
+export const Container = styled.div`
+  width: 90%;
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 95%;
+  }
+`;
+
 export const CardsContent = styled.div`
   padding-bottom: 20px;
 `;
