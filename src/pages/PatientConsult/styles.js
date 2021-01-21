@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { colors } from "../../styles/colors";
-
 export const Page = styled.div`
   width: 90%;
   min-height: calc(100vh - 60px);

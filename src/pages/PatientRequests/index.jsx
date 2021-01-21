@@ -1,18 +1,19 @@
 import Slide from "react-reveal/Slide";
 
-import Calendar from "./../../components/Calendar";
 import PageTitle from "../../components/PageTitle";
 
-import { StyledPatientsRequestContent } from "./styles";
+import { Container, StyledPatientRequests } from "./styles";
 
 const PatientRequest = () => {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   return (
-    <StyledPatientsRequestContent>
+    <Container>
       <PageTitle title={"Solicitações"} />
-      <Slide bottom>
-        <Calendar />
-      </Slide>
-    </StyledPatientsRequestContent>
+      <StyledPatientRequests>
+        <Slide bottom></Slide>
+      </StyledPatientRequests>
+    </Container>
   );
 };
 
