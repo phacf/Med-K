@@ -15,9 +15,8 @@ export const ContainerForm = styled.div`
 export const SectionForm = styled.section`
   width: 50%;
   h2 {
-    text-align: left;
+    text-align: center;
     padding: 10px;
-    margin-left: 15%;
     font-variant: small-caps;
     text-decoration: underline;
   }
@@ -28,8 +27,17 @@ export const SectionForm = styled.section`
     align-items: center;
     overflow-y: ${(props) => (props.scroll ? "auto" : "hidden")};
   }
+  div.ant-radio-group {
+    text-align: center;
+    /* margin: 0 auto; */
+    /* align-items: center; */
+    width: 100%;
+    padding: 5px;
+  }
   @media (max-width: 780px) {
     width: 320px;
+    border-top: ${(props) =>
+      props.scroll ? "hidden" : " 1px solid rgb(193, 206, 255)"};
   }
 `;
 
