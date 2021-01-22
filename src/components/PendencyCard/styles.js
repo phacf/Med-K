@@ -17,5 +17,20 @@ export const InfoContainer = styled.div`
   align-items: center;
 `;
 export const StyledButton = styled.button`
+<<<<<<< Updated upstream
   background-color: ${(props) => (props.confirmed ? "red" : "green")};
+=======
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: ${colors.gray3};
+  background-color: ${(props) => (props.confirmed ? "#61C2A1" : "#F68173")};
+  cursor: ${(props) => (props.confirmed ? "not-allowed" : "pointer")};
+
+  :hover {
+    transition: 0.3s;
+    background-color: ${(props) => !props.confirmed && "#419f72"};
+  }
+>>>>>>> Stashed changes
 `;

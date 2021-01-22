@@ -3,6 +3,7 @@ import Slide from "react-reveal/Slide";
 import PageTitle from "../../components/PageTitle";
 import { StyledPatientsRequestContent, Content } from "./styles";
 import { Form, Input, Button, DatePicker } from "antd";
+import Swal from "sweetalert2";
 
 const formItemLayout = {
   labelCol: {
@@ -57,7 +58,14 @@ const PatientRequest = () => {
     }
 
     console.log(data);
-    api.patch(`users/${user.id}`, dataProcessed);
+    api.patch(`user/${user.id}`, {
+      patientRequests: data,
+    });
+    Swal.fire(
+      "Cansulta agendada",
+      "Caso haja algum imprevisto, nos comunique.",
+      "success"
+    );
   };
 
   return (
