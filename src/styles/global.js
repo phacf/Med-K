@@ -13,7 +13,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     }
 
     html {
-        background-color: #000;
         font: 16px Roboto, sans-serif;
+    }
+    
+    body{
+        height: auto;
     }
 `;
