@@ -45,8 +45,8 @@ const Routes = () => {
     return (
       <>
         <Header
-          menuItems={["Exames", "Solicitações", "Dependências"]}
-          paths={["/exames", "/solicitacoes", "/pendencia"]}
+          menuItems={["Exames", "Solicitações", "Pendências"]}
+          paths={["/exames", "/solicitacoes", "/pendencias"]}
         />
         <PageContent>
           <Switch>
