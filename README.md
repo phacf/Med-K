@@ -11,11 +11,11 @@ Realizado por alunos da Kenzie Academy Brasil em virtude da conclusão do módul
 
 - [x] Cadastro de paciente
 - [x] Cadastro de médico
-- [ ] Solicitações do paciente (consultas, exames e vacinas)
-- [ ] Histórico de consulta detalhado
-- [ ] Resultados de exames com feedback do médico
-- [ ] Carteira de vacinação digital
-- [ ] Visualização dos dados do paciente
+- [x] Solicitações do paciente (consultas, exames e vacinas)
+- [x] Histórico de consulta detalhado
+- [x] Resultados de exames com feedback do médico
+- [x] Carteira de vacinação digital
+- [x] Visualização dos dados do paciente
 
 # 🛠 Tecnologias
 

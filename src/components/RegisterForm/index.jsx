@@ -6,7 +6,6 @@ import { Link, useHistory } from "react-router-dom";
 import { mask, unMask } from "remask";
 import Swal from "sweetalert2";
 import { userRegisterThunk } from "../../store/modules/user/thunk";
-import { useDispatch } from "react-redux";
 
 import { Content, StyledForm } from "../FormComponents/styles";
 import Motion from "../Motion";
@@ -51,7 +50,6 @@ const RegisterForm = () => {
   });
 
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -204,7 +202,7 @@ const RegisterForm = () => {
           <p>{errors.passwordCheck?.message}</p>
           <button type="submit">Cadastrar</button>
         </StyledForm>
-        <Link to="/">Login</Link>
+        <Link to="/login">Login</Link>
       </Content>
     </Motion>
   );
