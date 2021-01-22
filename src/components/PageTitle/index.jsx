@@ -1,23 +1,12 @@
-import styled from "styled-components";
+import { StyledPageTitle } from "./styles";
 
-import { colors } from "../../styles/colors";
+const PageTitle = ({ title }) => {
+  return (
+    <StyledPageTitle>
+      <h1>{title}</h1>
+      <hr />
+    </StyledPageTitle>
+  );
+};
 
-export const StyledCard = styled.div`
-  width: 100%;
-  padding: 10px;
-  margin: 0 auto;
-  margin-top: 20px;
-  border-radius: 10px;
-  border-bottom: 6px solid ${colors.blue3};
-  background-color: ${colors.blue1};
-
-  h1 {
-    color: ${colors.gray3};
-    font-size: 1rem;
-  }
-
-  p {
-    color: ${colors.gray2};
-    font-size: 1rem;
-  }
-`;
+export default PageTitle;
