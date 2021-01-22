@@ -41,10 +41,23 @@ const PatientRequest = () => {
   const [form] = Form.useForm();
   const tryLogin = (data) => {
     data.data = data.data._d.toLocaleString("pt-br");
+    data.isConfirm = false;
+
+    let dataProcessed = {};
+
+    if (!!user.patientRequest) {
+      const requestPrev = user.patientRequest;
+      dataProcessed = {
+        patientRequest: [...requestPrev, data],
+      };
+    } else {
+      dataProcessed = {
+        patientRequest: [data],
+      };
+    }
+
     console.log(data);
-    api.patch(`user/${user.id}`, {
-      ExamsRequests: data,
-    });
+    api.patch(`users/${user.id}`, dataProcessed);
   };
 
   return (

@@ -13,6 +13,7 @@ import Welcome from "../pages/Welcome";
 import PatientConsult from "../pages/PatientConsult";
 import PatientExam from "../pages/PatientExam";
 import PatientRequests from "../pages/PatientRequests";
+import DoctorPendent from "../pages/DoctorPendent";
 import PatientVaccines from "../pages/PatientVaccines";
 import Info from "../pages/Info";
 
@@ -44,14 +45,15 @@ const Routes = () => {
     return (
       <>
         <Header
-          menuItems={["Exames", "Solicitações"]}
-          paths={["/exames", "/solicitacoes"]}
+          menuItems={["Exames", "Solicitações", "Dependências"]}
+          paths={["/exames", "/solicitacoes", "/pendencia"]}
         />
         <PageContent>
           <Switch>
             <Route exact path="/" component={Welcome} />
             <Route path="/exames" component={DoctorExams} />
             <Route path="/solicitacoes" component={DoctorRequest} />
+            <Route path="/pendencia" component={DoctorPendent} />
           </Switch>
         </PageContent>
       </>
