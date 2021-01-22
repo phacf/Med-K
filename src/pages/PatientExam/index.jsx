@@ -37,13 +37,7 @@ const PatientExam = () => {
               return (
                 <div>
                   <NewButton key={index} onClick={handleDate} id={index}>
-                    {exam.date
-                      ? exam.date
-                          .replace(/[A-Z].*Z/, "")
-                          .split("-")
-                          .reverse()
-                          .join("-")
-                      : exam.protocol}
+                    {exam.data}
                   </NewButton>
                 </div>
               );

@@ -37,30 +37,35 @@ const tailFormItemLayout = {
 };
 
 const PatientRequest = () => {
-  const user = JSON.parse(localStorage.getItem("userInfo"));
-
   const [form] = Form.useForm();
+
   const tryLogin = (data) => {
+    form.resetFields();
+    const user = JSON.parse(localStorage.getItem("userInfo"));
     data.data = data.data._d.toLocaleString("pt-br");
     data.isConfirm = false;
+    data.id = user.patientRequests
+      ? user.patientRequests[user.patientRequests.length - 1].id + 1
+      : 1;
 
     let dataProcessed = {};
 
-    if (!!user.patientRequest) {
-      const requestPrev = user.patientRequest;
+    if (!!user.patientRequests) {
       dataProcessed = {
-        patientRequest: [...requestPrev, data],
+        patientRequests: [...user.patientRequests, data],
       };
     } else {
       dataProcessed = {
-        patientRequest: [data],
+        patientRequests: [data],
       };
     }
 
-    console.log(data);
-    api.patch(`user/${user.id}`, {
-      patientRequests: data,
-    });
+    console.log(dataProcessed);
+    api
+      .patch(`users/${user.id}`, dataProcessed)
+      .then((res) =>
+        localStorage.setItem("userInfo", JSON.stringify(res.data))
+      );
     Swal.fire(
       "Cansulta agendada",
       "Caso haja algum imprevisto, nos comunique.",
@@ -111,7 +116,7 @@ const PatientRequest = () => {
 
             <Form.Item
               name="description"
-              label="Descrição"
+              label="Motivo da solicitação"
               rules={[
                 {
                   required: true,

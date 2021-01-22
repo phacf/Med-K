@@ -44,8 +44,10 @@ const FormConsult = ({ setHistory, history }) => {
   const [form] = Form.useForm();
 
   const tryLogin = (data) => {
+    form.resetFields();
+
     let dataProcessed = {};
-    data.data = data.data._d;
+    data.data = data.data._d.toLocaleString("pt-br");
     data.isConfirm = false;
     if (!!history.consultations) {
       const consultatiosPrev = history.consultations;

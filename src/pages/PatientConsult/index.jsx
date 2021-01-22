@@ -36,12 +36,7 @@ const PatientConsult = () => {
               return (
                 <div>
                   <NewButton key={index} onClick={handleDate} id={index}>
-                    {consults.date &&
-                      consults.date
-                        .replace(/[A-Z].*Z/, "")
-                        .split("-")
-                        .reverse()
-                        .join("-")}
+                    {consults.data}
                   </NewButton>
                 </div>
               );

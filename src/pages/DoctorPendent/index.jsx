@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Descriptions, Button, Switch } from "antd";
 import ListCard from "../../components/ListCard";
-import PendencyCard from "../../components/PendencyCard";
+import { Empty } from "antd";
 
 import { CardsContainer } from "./styles";
 
@@ -17,62 +16,28 @@ const DoctorPendent = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res.data);
         const usersPendent = [];
         res.data.map((patient) => {
-          if (patient.patientRequest) {
-            usersPendent.push(patient);
+          if (patient.patientRequests) {
+            if (patient.patientRequests.length >= 1) {
+              usersPendent.push(patient);
+            }
           }
         });
-        setPatients(usersPendent);
-
         console.log(usersPendent);
+        setPatients(usersPendent);
       });
   }, []);
 
-  function onChange(checked) {
-    console.log(`switch to ${checked}`);
-  }
-
-  return (
-    // <div>
-    //   {patients &&
-    //     patients.map((patient, index) => (
-    //       <ListCard key={index} patient={patient} />
-    //     ))}
-    // </div>
-    <CardsContainer>
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-      />
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-      />
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-        confirmed
-      />
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-      />
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-        confirmed
-      />
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-      />
-      <PendencyCard
-        name="Nome"
-        description="Aqui vai a descrição, descreva bem o seu problema"
-        confirmed
-      />
+  return !!patients.length ? (
+    patients.map((patient, index) => (
+      <CardsContainer>
+        <ListCard key={index} patient={patient} />
+      </CardsContainer>
+    ))
+  ) : (
+    <CardsContainer empty>
+      <Empty description="Nenhuma pendência" />{" "}
     </CardsContainer>
   );
 };
