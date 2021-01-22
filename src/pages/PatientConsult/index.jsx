@@ -1,4 +1,16 @@
-import { Container, Section, DescriptionDate, Date } from "./styles";
+import "antd/dist/antd.css";
+import { Empty } from "antd";
+import { useState, useEffect } from "react";
+
+import PageTitle from "../../components/PageTitle";
+import {
+  Container,
+  ContainerForm,
+  SectionData,
+  SectionDescription,
+  NewButton,
+} from "./styles";
+// alterar nome das requisições
 
 const PatientConsult = () => {
   const [user, setUser] = useState({});
