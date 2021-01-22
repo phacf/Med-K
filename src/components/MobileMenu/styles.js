@@ -14,7 +14,7 @@ export const StyledMobileMenu = styled.div`
   background-color: ${colors.blue1};
   nav {
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -45,5 +45,24 @@ export const StyledMobileMenu = styled.div`
 
   @media screen and (min-width: 768px) {
     display: none;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: ${colors.gray2};
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
   }
 `;

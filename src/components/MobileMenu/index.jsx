@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
-import { StyledMobileMenu } from "./styles";
+import { StyledMobileMenu, ButtonContainer } from "./styles";
 
 const MobileMenu = ({ isMenuClosed, setClosed, menuItems, paths }) => {
   const history = useHistory();
@@ -21,6 +22,17 @@ const MobileMenu = ({ isMenuClosed, setClosed, menuItems, paths }) => {
           ))}
         </ul>
       </nav>
+      <ButtonContainer>
+        <button
+          onClick={() => {
+            localStorage.clear();
+            history.push("/");
+            document.location.reload(true);
+          }}
+        >
+          <FiLogOut />
+        </button>
+      </ButtonContainer>
     </StyledMobileMenu>
   );
 };
