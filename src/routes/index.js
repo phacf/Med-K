@@ -53,7 +53,7 @@ const Routes = () => {
             <Route exact path="/" component={Welcome} />
             <Route path="/exames" component={DoctorExams} />
             <Route path="/solicitacoes" component={DoctorRequest} />
-            <Route path="/pendencia" component={DoctorPendent} />
+            <Route path="/pendencias" component={DoctorPendent} />
           </Switch>
         </PageContent>
       </>
