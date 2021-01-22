@@ -10,6 +10,6 @@ export const CardsContainer = styled.div`
   margin: 0 auto;
 
   @media screen and (min-width: 768px) {
-    width: 90%;
+    width: 95%;
   }
 `;
