@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { Link, useHistory } from "react-router-dom";
 import { mask, unMask } from "remask";
 import Swal from "sweetalert2";
-import { userRegisterThunk } from "../../store/modules/user/thunk";
 
 import { Content, StyledForm } from "../FormComponents/styles";
 import Motion from "../Motion";
@@ -14,7 +13,7 @@ const RegisterForm = () => {
   const name = yup
     .string()
     .min(3, "Nome inválido")
-    .matches(/^[a-zA-z]/, "Use apenas letras")
+    .matches(/^[a-z]/, "Use apenas letras")
     .required("Campo requerido");
 
   const email = yup
@@ -56,7 +55,7 @@ const RegisterForm = () => {
   });
 
   const handleForm = (data) => {
-    userRegisterThunk(data);
+    console.log(data);
     Swal.fire("Cadastro realizado!", "Faça login para continuar.", "success");
     history.push("/");
   };
@@ -91,7 +90,6 @@ const RegisterForm = () => {
                 value="patient"
                 defaultChecked
                 className="inputRadio"
-                ref={register}
                 onClick={() => {
                   setDocType("CPF");
                   setDocValue("");
@@ -105,7 +103,6 @@ const RegisterForm = () => {
                 name="type"
                 value="medic"
                 className="inputRadio"
-                ref={register}
                 onClick={() => {
                   setDocType("CRM");
                   setDocValue("");

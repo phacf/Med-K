@@ -13,7 +13,7 @@ export const StyledContent = styled.div`
   justify-content: center;
   align-items: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-    url(${(props) => (props.isMedic ? doctorPageBg : patientPageBg)});
+    url(${(props) => (props.isDoctor ? doctorPageBg : patientPageBg)});
   background-size: cover;
 
   h1 {

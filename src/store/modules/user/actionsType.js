@@ -6,5 +6,5 @@ export const medicTypes = {
   GET_ALL_PATIENTS: "@medic/GET_ALL_PATIENTS",
 };
 export const userType = {
-  GET_USER_INFO: "@user/GET_USER_INFO",
+  PATIENT_INFO: "@GET/patient",
 };

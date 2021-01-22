@@ -5,5 +5,4 @@ export const colors = {
   blue4: "#578696",
   gray1: "#bababa",
   gray2: "#717171",
-  gray3: "#484848",
 };

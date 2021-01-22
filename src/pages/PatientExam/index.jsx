@@ -1,31 +1,6 @@
-import "antd/dist/antd.css";
-import { Empty } from "antd";
-
-import PageTitle from "../../components/PageTitle";
-
-import {
-  Container,
-  ContainerForm,
-  SectionData,
-  SectionDescription,
-  NewButton,
-} from "./styles";
-
-import { useState, useEffect } from "react";
+import { Container, Section, DescriptionDate, Date } from "./styles";
 
 const PatientExam = () => {
-  const [user, setUser] = useState({});
-  const [exam, setExam] = useState(undefined);
-
-  const handleDate = (evt) => {
-    setExam(user.exams[evt.target.id]);
-  };
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userInfo"));
-    setUser(user);
-  }, []);
-
   return (
     <Container>
       <PageTitle title={"Exames"} />

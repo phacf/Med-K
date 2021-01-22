@@ -2,8 +2,8 @@ import { medicTypes, userType } from "./actionsType";
 
 const users = {
   patientInfo: [],
-  userInfo: {},
   allPatientsInfo: [],
+  patientProfile: {},
 };
 
 const usersReducer = (state = users, action) => {
@@ -18,12 +18,9 @@ const usersReducer = (state = users, action) => {
       users.allPatientsInfo = [...patientsInfo];
       return state;
 
-    case userType.GET_USER_INFO:
-      const { userInfo } = action;
-      users.userInfo = { ...userInfo };
-
+    case userType.PATIENT_INFO:
+      state.patientProfile = { ...actions.patientProfile };
       return state;
-
     default:
       return state;
   }

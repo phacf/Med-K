@@ -1,12 +1,15 @@
 import { Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
 import Header from "../components/Header";
 import PageContent from "../components/PageContent";
 
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PatientConsult from "../pages/PatientConsult";
+import PatientExam from "../pages/PatientExam";
 import DoctorExams from "../pages/DoctorExams";
 import DoctorRequest from "../pages/DoctorRequest";
 import Welcome from "../pages/Welcome";
@@ -18,15 +21,19 @@ import PatientVaccines from "../pages/PatientVaccines";
 import Info from "../pages/Info";
 
 const Routes = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const token = window.localStorage.getItem("authToken");
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  // const [isAuthenticated, setAuthentication] = useState(false);
+  // const history = useHistory();
+  // const location = useLocation();
 
-  useEffect(() => {
-    if (token) {
-      setIsAuthenticated(token);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem("authToken");
+  //   if (token) {
+  //     setAuthentication(true);
+  //     if (location.pathname === "/") {
+  //       history.push("/");
+  //     }
+  //   }
+  // }, [location.pathname, history]);
 
   if (!isAuthenticated) {
     return (
@@ -60,38 +67,32 @@ const Routes = () => {
     );
   }
 
-  if (userInfo.type === "patient") {
-    return (
-      <>
-        <Header
-          menuItems={[
-            "Exames",
-            "Consultas",
-            "Solicitações",
-            "Vacinas",
-            "Informações",
-          ]}
-          paths={[
-            "/exames",
-            "/consultas",
-            "/solicitacoes",
-            "/vacinas",
-            "/informacoes",
-          ]}
-        />
+  return (
+    <>
+      <AnimatePresence>
+        <Header menuItems={["Exames", "Consultas", "Pacientes"]} paths={[]} />
         <PageContent>
           <Switch>
-            <Route exact path="/" component={Welcome} />
-            <Route path="/exames" component={PatientExam} />
-            <Route exact path="/consultas" component={PatientConsult} />
-            <Route path="/solicitacoes" component={PatientRequests} />
-            <Route path="/vacinas" component={PatientVaccines} />
-            <Route path="/informacoes" component={Info} />
+            <Route exact path="/medico/solicitacoes">
+              <DoctorRequest />
+            </Route>
+            <Route exact path="/medico/exames">
+              <DoctorExams />
+            </Route>
+            <Route exact path="/paciente/consultas">
+              <PatientConsult />
+            </Route>
+            <Route exact path="/paciente/exames">
+              <PatientExam />
+            </Route>
+            <Route path="/">
+              <Welcome />
+            </Route>
           </Switch>
         </PageContent>
-      </>
-    );
-  }
+      </AnimatePresence>
+    </>
+  );
 };
 
 export default Routes;
