@@ -12,7 +12,7 @@ const MobileMenu = ({ isMenuClosed, setClosed, menuItems, paths }) => {
             <li
               key={index}
               onClick={() => {
-                history.push({ paths });
+                history.push({ paths[index] });
                 setClosed();
               }}
             >
