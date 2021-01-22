@@ -2,8 +2,10 @@ import { api } from "../../services/api";
 import Slide from "react-reveal/Slide";
 import PageTitle from "../../components/PageTitle";
 import { StyledPatientsRequestContent, Content } from "./styles";
-import { Form, Input, Button, DatePicker } from "antd";
+import { Form, Input, Button, DatePicker, Select } from "antd";
 import Swal from "sweetalert2";
+
+const { Option } = Select;
 
 const formItemLayout = {
   labelCol: {
@@ -39,12 +41,34 @@ const tailFormItemLayout = {
 const PatientRequest = () => {
   const [form] = Form.useForm();
 
+  const onTypeChange = (value) => {
+    switch (value) {
+      case "Clínico Geral":
+        form.setFieldsValue({ type: "Clínico Geral" });
+        return;
+      case "Pediatra":
+        form.setFieldsValue({ type: "Pediatra" });
+        return;
+      case "Oftalmologista":
+        form.setFieldsValue({ type: "Oftalmologista" });
+        return;
+      case "Dermatologista":
+        form.setFieldsValue({ type: "Dermatologista" });
+        return;
+      case "Dentista":
+        form.setFieldsValue({ type: "Dentista" });
+        return;
+    }
+  };
+
   const tryLogin = (data) => {
     form.resetFields();
+    console.log(data);
     const user = JSON.parse(localStorage.getItem("userInfo"));
     data.data = data.data._d.toLocaleString("pt-br");
     data.isConfirm = false;
-    data.id = user.patientRequests
+    console.log(user);
+    data.id = !!user.patientRequests.length
       ? user.patientRequests[user.patientRequests.length - 1].id + 1
       : 1;
 
@@ -98,7 +122,17 @@ const PatientRequest = () => {
                 },
               ]}
             >
-              <Input />
+              <Select
+                placeholder="Selecione uma especialidade"
+                onChange={onTypeChange}
+                allowClear
+              >
+                <Option value="Clínico Geral">Clínico Geral</Option>
+                <Option value="Pediatra">Pediatra</Option>
+                <Option value="Oftalmologista">Oftalmologista</Option>
+                <Option value="Dermatologista">Dermatologista</Option>
+                <Option value="Dentista">Dentista</Option>
+              </Select>
             </Form.Item>
 
             <Form.Item
