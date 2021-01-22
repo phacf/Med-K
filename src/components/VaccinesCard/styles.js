@@ -28,7 +28,6 @@ export const StyledCardHeader = styled.div`
   color: ${colors.gray3};
   background-color: ${colors.blue2};
   border-radius: 10px 0;
-  box-shadow: inset 4px 4px 16px 8px rgba(0, 0, 0, 0.25);
 `;
 
 export const StyledVaccinesInfo = styled.div`

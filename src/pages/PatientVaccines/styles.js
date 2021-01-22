@@ -30,8 +30,8 @@ export const StyledVaccinesContent = styled.div`
   width: 100%;
   min-height: calc(100vh - 164px);
   display: flex;
-  justify-content: ${(props) => (!props.vaccines ? "center" : "space-between")};
-  align-items: ${(props) => (!props.vaccines ? "center" : "flex-start")};
+  justify-content: space-between;
+  align-items: flex-start;
   flex-wrap: wrap;
   margin: 0 auto;
   padding-bottom: 20px;
@@ -39,5 +39,7 @@ export const StyledVaccinesContent = styled.div`
 
   h1 {
     color: ${colors.gray3};
+    align-self: center;
+    margin: 0 auto;
   }
 `;
