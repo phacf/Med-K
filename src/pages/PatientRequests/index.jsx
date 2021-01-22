@@ -2,7 +2,7 @@ import { api } from "../../services/api";
 import Slide from "react-reveal/Slide";
 import PageTitle from "../../components/PageTitle";
 import { StyledPatientsRequestContent, Content } from "./styles";
-import { Form, Input, Button, DatePicker} from "antd";
+import { Form, Input, Button, DatePicker } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -52,7 +52,7 @@ const PatientRequest = () => {
       <PageTitle title={"Solicitações"} />
       <Slide bottom>
         <Content>
-          <h2>Solicitação de Exame</h2>
+          <h2>Agendamento de Consulta</h2>
           <Form
             style={{ paddingTop: 10 }}
             {...formItemLayout}
@@ -63,11 +63,11 @@ const PatientRequest = () => {
           >
             <Form.Item
               name="type"
-              label="Exame"
+              label="Especialidade"
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira o nome do exame.",
+                  message: "Por favor, insira a especialidade do seu médico.",
                   whitespace: true,
                 },
               ]}
@@ -81,7 +81,7 @@ const PatientRequest = () => {
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira a data do exame.",
+                  message: "Por favor, a data.",
                 },
               ]}
             >
@@ -90,11 +90,11 @@ const PatientRequest = () => {
 
             <Form.Item
               name="description"
-              label="Situação"
+              label="Descrição"
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira resultado do exame.",
+                  message: "Por favor, descreva o que você está sentindo.",
                   whitespace: true,
                 },
               ]}

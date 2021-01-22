@@ -17,7 +17,7 @@ const PatientConsult = () => {
   const [consultations, setConsults] = useState(undefined);
 
   const handleDate = (evt) => {
-    setConsults(user.exams[evt.target.id]);
+    setConsults(user.consultations[evt.target.id]);
   };
 
   useEffect(() => {
@@ -36,8 +36,8 @@ const PatientConsult = () => {
               return (
                 <div>
                   <NewButton key={index} onClick={handleDate} id={index}>
-                    {consults.data &&
-                      consults.data
+                    {consults.date &&
+                      consults.date
                         .replace(/[A-Z].*Z/, "")
                         .split("-")
                         .reverse()
