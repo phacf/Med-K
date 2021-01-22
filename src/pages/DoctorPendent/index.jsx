@@ -2,6 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Descriptions, Button, Switch } from "antd";
 import ListCard from "../../components/ListCard";
+import PendencyCard from "../../components/PendencyCard";
+
+import { CardsContainer } from "./styles";
 
 const DoctorPendent = () => {
   const [patients, setPatients] = useState([]);
@@ -32,12 +35,45 @@ const DoctorPendent = () => {
   }
 
   return (
-    <div>
-      {patients &&
-        patients.map((patient, index) => (
-          <ListCard key={index} patient={patient} />
-        ))}
-    </div>
+    // <div>
+    //   {patients &&
+    //     patients.map((patient, index) => (
+    //       <ListCard key={index} patient={patient} />
+    //     ))}
+    // </div>
+    <CardsContainer>
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+      />
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+      />
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+        confirmed
+      />
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+      />
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+        confirmed
+      />
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+      />
+      <PendencyCard
+        name="Nome"
+        description="Aqui vai a descrição, descreva bem o seu problema"
+        confirmed
+      />
+    </CardsContainer>
   );
 };
 
