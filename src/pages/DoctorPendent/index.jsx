@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ListCard from "../../components/ListCard";
 import { Empty } from "antd";
+import Slide from "react-reveal/Slide";
 
-import { CardsContainer } from "./styles";
+import { Container, CardsContainer } from "./styles";
+
+import ListCard from "../../components/ListCard";
+import PageTitle from "../../components/PageTitle";
 
 const DoctorPendent = () => {
   const [patients, setPatients] = useState([]);
@@ -29,16 +32,23 @@ const DoctorPendent = () => {
       });
   }, []);
 
-  return !!patients.length ? (
-    patients.map((patient, index) => (
-      <CardsContainer>
-        <ListCard key={index} patient={patient} />
-      </CardsContainer>
-    ))
-  ) : (
-    <CardsContainer empty>
-      <Empty description="Nenhuma pendência" />{" "}
-    </CardsContainer>
+  return (
+    <Container>
+      <PageTitle title="Pendências" />
+      <Slide bottom>
+        {!!patients.length ? (
+          patients.maps((patient, index) => (
+            <CardsContainer>
+              <ListCard key={index} patient={patient} />
+            </CardsContainer>
+          ))
+        ) : (
+          <CardsContainer empty>
+            <Empty description="Nenhuma pendência" />
+          </CardsContainer>
+        )}
+      </Slide>
+    </Container>
   );
 };
 
